@@ -71,9 +71,130 @@ public class PatternMatchTest {
     @Test
     public void test4() {
         String text = "纸1-2张/大+小(厘米)";
-        Pattern pattern = Pattern.compile("[\\-+/()]+");
+        //String key = "[\\-+/()]+";
+        String key = "[^\\u4e00-\\u9fa5]+";
+        Pattern pattern = Pattern.compile(key);
         Matcher matcher = pattern.matcher(text);
         String result = matcher.replaceAll("");
         System.out.println(result);
+    }
+
+    @Test
+    public void test5() {
+        String fileStr = "<#assign ctx=\"${rc.contextPath}\">\n" +
+                "<script type=\"text/javascript\" src=\"${qiniuCdnUrl}/static/new/js/center_common.js?v=20151022\"></script>\n" +
+                "<script type=\"text/javascript\">\n" +
+                "    function deliveryOrderSearch() {\n" +
+                "        var data = $(\"#frmDeliveryOrderSearch\").serializeObject();\n" +
+                "        data.delivery = true;\n" +
+                "        $('#deliveryOrderGrid').datagrid('load', data);\n" +
+                "    }\n" +
+                "    function deliveryOrderCancel() {\n" +
+                "        $(\"#frmDeliveryOrderSearch\").resetForm();\n" +
+                "    }\n" +
+                "\n" +
+                "    $(document).unbind('keydown').keydown(function (e) {\n" +
+                "        if (e.keyCode == 13) {\n" +
+                "            deliveryOrderSearch();\n" +
+                "            return false;\n" +
+                "        }\n" +
+                "    });\n" +
+                "</script>\n" +
+                "\n" +
+                "<!-- 表单编辑区域 -->\n" +
+                "<dl id=\"actEdit\" class=\"action-area\">\n" +
+                "    <dt class=\"cf\">\n" +
+                "    <div class=\"form-name\">搜索</div>\n" +
+                "    <span class=\"arrow\"></span>\n" +
+                "    </dt>\n" +
+                "    <dd>\n" +
+                "        <form id=\"frmDeliveryOrderSearch\" method=\"post\">\n" +
+                "            <table class=\"form-tb\">\n" +
+                "                <tr>\n" +
+                "                    <th class=\"tb-lab\">单据时间</th>\n" +
+                "                    <td>\n" +
+                "                        <select id=\"dateType\" name=\"dateType\" class=\"easyui-combobox combo-w\">\n" +
+                "                            <option value=\"0\">最近七天</option>\n" +
+                "                            <option value=\"1\">七天以前(已完成)</option>\n" +
+                "                        </select>\n" +
+                "                    </td>\n" +
+                "                    <th class=\"tb-lab\">单据编号</th>\n" +
+                "                    <td><input class=\"easyui-validatebox text\" type=\"text\" id=\"code\" name=\"code\"\n" +
+                "                               data-options=\"required:false\"/></td>\n" +
+                "                    <th class=\"tb-lab\">平台单号</th>\n" +
+                "                    <td><input class=\"easyui-validatebox text\" type=\"text\" id=\"platformCode\" name=\"platformCode\"\n" +
+                "                               data-options=\"required:false\"/></td>\n" +
+                "                </tr>\n" +
+                "                <tr>\n" +
+                "                    <th class=\"tb-lab\">会员名称</th>\n" +
+                "                    <td><input class=\"easyui-validatebox text\" type=\"text\" id=\"vipName\" name=\"vipName\"\n" +
+                "                               data-options=\"required:false\"/></td>\n" +
+                "                    <th class=\"tb-lab\">收货人</th>\n" +
+                "                    <td><input class=\"easyui-validatebox text\" type=\"text\" id=\"receiverName\" name=\"receiverName\"\n" +
+                "                               data-options=\"required:false\"/></td>\n" +
+                "                    <th class=\"tb-lab\">物流公司</th>\n" +
+                "                    <td><input class=\"easyui-combobox combo-w\" id=\"expressId\" name=\"expressId\"></td>\n" +
+                "                </tr>\n" +
+                "                <tr>\n" +
+                "                    <th class=\"tb-lab\">物流单号</th>\n" +
+                "                    <td><input class=\"easyui-validatebox text\" type=\"text\" id=\"mailNo\" name=\"mailNo\"\n" +
+                "                               data-options=\"required:false\"/></td>\n" +
+                "                </tr>\n" +
+                "                <tr>\n" +
+                "                    <td colspan=\"3\">\n" +
+                "                        <input class=\"btn btn-primary\" type=\"button\" onclick=\"deliveryOrderSearch()\" value=\"搜索\"/>\n" +
+                "                        <input class=\"btn\" type=\"button\" onclick=\"deliveryOrderCancel()\" value=\"重置条件\"/>\n" +
+                "                    </td>\n" +
+                "                </tr>\n" +
+                "            </table>\n" +
+                "        </form>\n" +
+                "    </dd>\n" +
+                "</dl>\n" +
+                "\n" +
+                "<table id=\"deliveryOrderGrid\"\n" +
+                "       data-options=\"\n" +
+                "                url:'${ctx}/tc/delivery/delivery_order_header/data/list',\n" +
+                "                queryParams:{delivery: true},\n" +
+                "                rownumbers: true,\n" +
+                "                singleSelect:true,\n" +
+                "                 pagination:true,\n" +
+                "                idField: 'id'\">\n" +
+                "    <thead>\n" +
+                "    <tr>\n" +
+                "        <th data-options=\"field:'code'\">单据编号</th>\n" +
+                "        <th data-options=\"field:'mailNo'\">物流单号</th>\n" +
+                "        <th data-options=\"field:'shopName', width:80\">店铺</th>\n" +
+                "        <th data-options=\"field:'vipName', width:60\">会员</th>\n" +
+                "        <th data-options=\"field:'warehouseName', width:80\">仓库</th>\n" +
+                "        <th data-options=\"field:'expressName', width:60\">物流公司</th>\n" +
+                "        <th data-options=\"field:'buyerMemo', width:100\">买家留言</th>\n" +
+                "        <th data-options=\"field:'sellerMemo', width:80\">卖家备注</th>\n" +
+                "        <th data-options=\"field:'receiverName', width:60\">收货人</th>\n" +
+                "        <#--<th data-options=\"field:'receiverPhone', width:80\">收货人电话</th>-->\n" +
+                "        <#--<th data-options=\"field:'receiverMobile', width:80\">收货人手机</th>-->\n" +
+                "        //<th data-options=\"field:'receiverAddress', width:140\">收货地址</th>\n" +
+                "        //<th data-options=\"field:'createName', width:80\">制单人</th>\n" +
+                "    </tr>\n" +
+                "    </thead>\n" +
+                "</table>\n";
+
+        //String key1 = "[\\u4e00-\\u9fa5]+";
+        String key1 = "[\\u4e00-\\u9fa5].*[\\u4e00-\\u9fa5]+(\\))?";
+        String key2 = "(<(!|#)--(.|[\r\n])*?-->)|(//.*)";
+        Pattern pattern2 = Pattern.compile(key2);
+        Matcher matcher2 = pattern2.matcher(fileStr);
+        String replayStr = "";
+        if (matcher2.find()) {
+            replayStr = matcher2.replaceAll("");
+            System.out.println(replayStr);
+        }
+
+        if (!"".equals(replayStr)) {
+            Pattern pattern1 = Pattern.compile(key1);
+            Matcher matcher1 = pattern1.matcher(replayStr);
+            while (matcher1.find()) {
+                System.out.println(matcher1.group());
+            }
+        }
     }
 }

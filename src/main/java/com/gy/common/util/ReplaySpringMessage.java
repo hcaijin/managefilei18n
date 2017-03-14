@@ -2,7 +2,6 @@ package com.gy.common.util;
 
 import com.gy.common.util.impl.ReplayManage;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -11,13 +10,15 @@ import java.io.IOException;
 public class ReplaySpringMessage {
     public static void main(String args[]) {
         try {
-            File file = new File("/home/hcj/Work/data/managefilei18n/outputfile.txt");
-            ReplayManage replayManage = new ReplayManage(file);
-            replayManage.doUnique();
+            String file = "/home/hcj/Work/data/managefilei18n/outputfile.txt";
+            String outFile = "/home/hcj/Work/data/managefilei18n/messages.properties";
+            ReplayManage replayManage = new ReplayManage(file, outFile);
+            replayManage.doReplay();
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        System.exit(0);
     }
 }

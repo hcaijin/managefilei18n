@@ -11,5 +11,6 @@ public class Main {
         ManageFile manageFile = new ManageFile();
         manageFile.setRootPath(folder);
         manageFile.getFileList();
+        System.exit(0);
     }
 }
