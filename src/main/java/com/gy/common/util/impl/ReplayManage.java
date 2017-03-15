@@ -1,10 +1,8 @@
 package com.gy.common.util.impl;
 
+
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,9 +10,12 @@ import java.util.regex.Pattern;
  * Created by hcj on 3/13/17.
  */
 public class ReplayManage {
+    //private final static Logger logger = LoggerFactory.getLogger(ReplayManage.class);
     private final static String REPLAYSTRING = "<@spring.message \"%s\"/>";
     private final static String ENCODING = "UTF-8";
     private final static String FILENF = System.getProperty("line.separator");
+    private final static String SHELL_FILE_DIR = "/home/hcj/bin/";
+    private final static String RUNNING_SHELL_FILE = "doSpringI18n.sh";
     /**
      * 输入文件
      */
@@ -40,13 +41,19 @@ public class ReplayManage {
                 }
                 List<Map.Entry<String, Integer>> list = sortResult(map);
                 replaySpringMsg(list);
-                saveToFile(list);
+                int totalNum = saveToFile(list);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * 去重，统计重复次数
+     *
+     * @param str
+     * @param map
+     */
     private void dealLine(String str, Map map) {
         if (str.length() > 0) {
             Integer num = (Integer) map.get(str);
@@ -57,6 +64,12 @@ public class ReplayManage {
         }
     }
 
+    /**
+     * 排序结果
+     *
+     * @param result
+     * @return
+     */
     private List<Map.Entry<String, Integer>> sortResult(Map result) {
         List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(result.entrySet());
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
@@ -68,7 +81,13 @@ public class ReplayManage {
         return list;
     }
 
-    private void saveToFile(List<Map.Entry<String, Integer>> list) throws IOException {
+    /**
+     * 保存为properties
+     *
+     * @param list
+     * @throws IOException
+     */
+    private int saveToFile(List<Map.Entry<String, Integer>> list) throws IOException {
         FileOutputStream fos = new FileOutputStream(outFile, true);
         for (Map.Entry<String, Integer> entry : list) {
             //System.out.println(entry.getValue() + ":" + entry.getKey());
@@ -82,50 +101,128 @@ public class ReplayManage {
             }
         }
         fos.close();
+        return list.size();
     }
 
+    //private void replaySpringMsg(List<Map.Entry<String, Integer>> list) {
+    //    String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/tc/delivery/";
+    //    ExecutorService pool = Executors.newCachedThreadPool();//线程池
+    //    pool.submit(new ReplayMsgThead(new File(directory), list));
+    //}
+
+    //private void replaySpringMsg(List<Map.Entry<String, Integer>> list) {
+    //    File dirFile = new File("/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/tc/delivery/");
+    //    //ExecutorService pool = Executors.newCachedThreadPool();//线程池
+    //    File[] files = dirFile.listFiles();
+    //    for (File file : files) {
+    //        Pattern pattern = Pattern.compile("[\\d-]");
+    //        Matcher match = pattern.matcher(file.getName());
+    //        if (!match.find()) {
+    //            //pool.submit(new ReplayMsgThead(file, list));
+    //            for (Map.Entry<String, Integer> entry : list) {
+    //                String value = entry.getKey();
+    //                if (value.length() > 0) {
+    //                    String[] str = value.split("=");
+    //                    if (str.length == 2) {
+    //                        int stat = doProcess(str[0], str[1], file.getAbsolutePath());
+    //                        if (stat == 200) {
+    //                            System.out.println("Success: " + file.getPath());
+    //                            //} else {
+    //                            //    System.out.println("Fail: " + file);
+    //                        }
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+
     private void replaySpringMsg(List<Map.Entry<String, Integer>> list) {
-        String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/tc/delivery/";
-        ExecutorService pool = Executors.newCachedThreadPool();//线程池
+        String fileStr = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/tc/delivery/";
+        //ExecutorService pool = Executors.newCachedThreadPool();//线程池
         for (Map.Entry<String, Integer> entry : list) {
             String value = entry.getKey();
             if (value.length() > 0) {
                 String[] str = value.split("=");
                 if (str.length == 2) {
-                    pool.submit(new ReplayMsgThead(new File(directory), str));
-                }
-            }
-        }
-    }
-
-    class ReplayMsgThead implements Callable {
-        private File file;
-        private String msgKey;
-        private String msgName;
-
-        ReplayMsgThead(File file, String[] str) {
-            this.file = file;
-            this.msgKey = str[0];
-            this.msgName = str[1];
-        }
-
-        @Override
-        public Object call() throws Exception {
-            try {
-                File[] files = file.listFiles();
-                for (File file : files) {
-                    Pattern pattern = Pattern.compile("[\\d-]");
-                    Matcher match = pattern.matcher(file.getName());
-                    if (!match.find()) {
-                        operationFile(file, msgKey, msgName);
+                    int stat = doProcess(str[0], str[1], fileStr);
+                    if (stat == 200) {
+                        System.out.println("Success: " + file.getPath());
                     }
                 }
-            } catch (Exception ex) {
-                ex.printStackTrace();
             }
-            return null;
         }
     }
+
+    //private void replaySpringMsg(List<Map.Entry<String, Integer>> list) {
+    //    File dirFile = new File("/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/tc/delivery/");
+    //    //ExecutorService pool = Executors.newCachedThreadPool();//线程池
+    //    File[] files = dirFile.listFiles();
+    //    for (File file : files) {
+    //        Pattern pattern = Pattern.compile("[\\d-]");
+    //        Matcher match = pattern.matcher(file.getName());
+    //        if (!match.find()) {
+    //            //pool.submit(new ReplayMsgThead(file, list));
+    //            for (Map.Entry<String, Integer> entry : list) {
+    //                String value = entry.getKey();
+    //                if (value.length() > 0) {
+    //                    String[] str = value.split("=");
+    //                    if (str.length == 2) {
+    //                        int stat = doProcess(str[0], str[1], file.getAbsolutePath());
+    //                        if (stat == 200) {
+    //                            System.out.println("Success: " + file.getPath());
+    //                            //} else {
+    //                            //    System.out.println("Fail: " + file);
+    //                        }
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+
+    //private void replaySpringMsg(List<Map.Entry<String, Integer>> list) {
+    //    String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/tc/delivery/";
+    //    ExecutorService pool = Executors.newCachedThreadPool();//线程池
+    //    for (Map.Entry<String, Integer> entry : list) {
+    //        String value = entry.getKey();
+    //        if (value.length() > 0) {
+    //            String[] str = value.split("=");
+    //            if (str.length == 2) {
+    //                pool.submit(new ReplayMsgThead(new File(directory), str));
+    //            }
+    //        }
+    //    }
+    //}
+
+    //class ReplayMsgThead implements Callable {
+    //    private File file;
+    //    private String msgKey;
+    //    private String msgName;
+    //
+    //    ReplayMsgThead(File file, String[] str) {
+    //        this.file = file;
+    //        this.msgKey = str[0];
+    //        this.msgName = str[1];
+    //    }
+    //
+    //    @Override
+    //    public Object call() throws Exception {
+    //        try {
+    //            File[] files = file.listFiles();
+    //            for (File file : files) {
+    //                Pattern pattern = Pattern.compile("[\\d-]");
+    //                Matcher match = pattern.matcher(file.getName());
+    //                if (!match.find()) {
+    //                    //operationFile(file, msgKey, msgName);
+    //                }
+    //            }
+    //        } catch (Exception ex) {
+    //            ex.printStackTrace();
+    //        }
+    //        return null;
+    //    }
+    //}
 
     //class ReplayMsgThead implements Callable {
     //    private File file;
@@ -246,6 +343,108 @@ public class ReplayManage {
     //        out.close();
     //    } catch (IOException e) {
     //        e.printStackTrace();
+    //    }
+    //}
+
+    //private void doSystemBash(int num) {
+    //    try {
+    //        BufferedReader inScanner = new BufferedReader(new InputStreamReader(new FileInputStream(outFile), ENCODING));
+    //        int lineNum = 0;
+    //        while (inScanner.readLine() != null) {
+    //            lineNum++;
+    //        }
+    //        inScanner.close();
+    //        if (lineNum == num) {
+    //            doProcess(0);
+    //        }
+    //    } catch (Exception ex) {
+    //        ex.printStackTrace();
+    //    }
+    //}
+
+    //private void doProcess(int status) {
+    //    if (status == 1) {
+    //        ProcessBuilder pb = new ProcessBuilder("./" + RUNNING_SHELL_FILE, keyword.trim(),
+    //                taskId.toString(), fileName);
+    //        pb.directory(new File(CASPERJS_FILE_DIR));
+    //        int runningStatus;
+    //        String s;
+    //        try {
+    //            Process p = pb.start();
+    //            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+    //            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+    //            while ((s = stdInput.readLine()) != null) {
+    //                logger.error(s);
+    //            }
+    //            while ((s = stdError.readLine()) != null) {
+    //                logger.error(s);
+    //            }
+    //            try {
+    //                runningStatus = p.waitFor();
+    //                if (runningStatus == 0) {
+    //                    System.out.println("Success");
+    //                }
+    //            } catch (InterruptedException e) {
+    //                e.printStackTrace();
+    //            }
+    //        } catch (Exception ex) {
+    //            ex.printStackTrace();
+    //        }
+    //    } else {
+    //        try {
+    //            Process p = Runtime.getRuntime().exec(SHELL_FILE_DIR + RUNNING_SHELL_FILE + " " + param1 + " " + param2 + " " + param3);
+    //            p.waitFor();
+    //        } catch (InterruptedException ex) {
+    //            ex.printStackTrace();
+    //        } catch (Exception e) {
+    //            e.printStackTrace();
+    //        }
+    //    }
+    //}
+
+    private int doProcess(String param1, String param2, String param3) {
+        int res = 0;
+        try {
+            Process p = Runtime.getRuntime().exec(SHELL_FILE_DIR + RUNNING_SHELL_FILE + " " + param1 + " " + param2 + " " + param3);
+            res = p.waitFor();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    //class ReplayMsgThead implements Callable {
+    //    private File file;
+    //    private List<Map.Entry<String, Integer>> list;
+    //
+    //    ReplayMsgThead(File file, List<Map.Entry<String, Integer>> list) {
+    //        this.file = file;
+    //        this.list = list;
+    //    }
+    //
+    //    @Override
+    //    public Object call() throws Exception {
+    //        try {
+    //            for (Map.Entry<String, Integer> entry : list) {
+    //                String value = entry.getKey();
+    //                if (value.length() > 0) {
+    //                    String[] str = value.split("=");
+    //                    if (str.length == 2) {
+    //                        int stat = doProcess(str[0], str[1], file.getAbsolutePath());
+    //                        if (stat == 200) {
+    //                            System.out.println("Success: " + file.getPath());
+    //                            //} else {
+    //                            //    System.out.println("Fail: " + file);
+    //                        }
+    //                    }
+    //                }
+    //            }
+    //        } catch (Exception ex) {
+    //            ex.printStackTrace();
+    //        }
+    //        return null;
     //    }
     //}
 }
