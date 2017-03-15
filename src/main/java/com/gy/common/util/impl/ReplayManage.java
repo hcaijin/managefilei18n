@@ -32,13 +32,14 @@ public class ReplayManage {
     }
 
     public void doReplay(String name) throws InterruptedIOException {
+        System.out.println("do replay start ing...");
         try {
             if (file.isFile() && file.exists()) {
                 BufferedReader inScanner = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
                 String string;
                 Map<String, Integer> map = new HashMap<String, Integer>();
                 while ((string = inScanner.readLine()) != null) {
-                    dealLine(string, map);
+                    dealLines(string, map);
                 }
                 List<Map.Entry<String, Integer>> list = sortResult(map);
                 replaySpringMsg(list);
@@ -51,13 +52,25 @@ public class ReplayManage {
     }
 
     /**
+     * 根据字符长度
+     *
+     * @param str
+     * @param map
+     */
+    private void dealLines(String str, Map map) {
+        if (str != null && str.length() > 0) {
+            map.put(str, str.length());
+        }
+    }
+
+    /**
      * 去重，统计重复次数
      *
      * @param str
      * @param map
      */
     private void dealLine(String str, Map map) {
-        if (str.length() > 0) {
+        if (str != null && str.length() > 0) {
             Integer num = (Integer) map.get(str);
             if (num == null) {
                 num = 0;
@@ -76,7 +89,7 @@ public class ReplayManage {
         List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(result.entrySet());
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
             public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-                return o1.getValue().compareTo(o2.getValue());
+                return o2.getValue().compareTo(o1.getValue());
             }
         });
         return list;
@@ -119,13 +132,14 @@ public class ReplayManage {
     private void replaySpringMsg(List<Map.Entry<String, Integer>> list) {
         for (Map.Entry<String, Integer> entry : list) {
             String value = entry.getKey();
-            if (value.length() > 0) {
+            if (value != null && value.length() > 0) {
                 String[] str = value.split("=");
                 if (str.length == 2) {
                     int stat = doProcess(str, fileDirStr, 1);
-                    if (stat == 200) {
-                        System.out.println(String.format("replay spring message Success: key=%s; name=%s", str[0], str[1]));
+                    if (stat == 2) {
+                        System.out.println(String.format("replay spring message fail: key=%s; name=%s", str[0], str[1]));
                     }
+                    //System.out.println(String.format("replay spring message fail: key=%s; name=%s", str[0], str[1]));
                 }
             }
         }
@@ -140,7 +154,8 @@ public class ReplayManage {
      * @return
      */
     private int doProcess(String[] str, String param3, int status) {
-        int runningStatus = 0;
+        //默认2就是返回失败
+        int runningStatus = 2;
         String param1 = str[0];
         String param2 = str[1];
         if (status == 1) {

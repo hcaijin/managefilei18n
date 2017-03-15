@@ -16,5 +16,6 @@ DIR=$3
 
 cd ${DIR}
 #echo "find . -iregex \"./[a-z]+\.ftl\" >> ./dospringi18n-find.log"
-find . -iregex "./[a-z]+\.ftl" | xargs sed -i "s/${NAME}/\<\@spring\.message \"${KEY}\"\/\>/g"
-[[ $? -ne 0 ]] && exit 200
+#find . -iregex "./[a-z]+\.ftl" >> ./doSpringI18n-find.log
+find . -iregex "./[a-z]+\.ftl" | xargs sed -i "s#\<$NAME\>#<@spring\.message \"$KEY\"/>#g"
+[[ $? -ne 0 ]] && exit 2
