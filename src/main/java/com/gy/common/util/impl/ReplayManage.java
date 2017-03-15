@@ -1,9 +1,6 @@
 package com.gy.common.util.impl;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.*;
 import java.util.*;
 
@@ -11,7 +8,7 @@ import java.util.*;
  * Created by hcj on 3/13/17.
  */
 public class ReplayManage {
-    private final Logger logger = LoggerFactory.getLogger(ReplayManage.class);
+    //private final Logger logger = LoggerFactory.getLogger(ReplayManage.class);
     private final static String FILENF = System.getProperty("line.separator");
     private final static String SHELL_FILE_DIR = System.getProperty("user.dir") + "/bin/";
     private final static String RUNNING_SHELL_FILE = "doSpringI18n.sh";
@@ -155,10 +152,12 @@ public class ReplayManage {
                 BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
                 BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
                 while ((s = stdInput.readLine()) != null) {
-                    logger.error(s);
+                    System.out.println("stdInput error:" + s);
+                    //logger.error(s);
                 }
                 while ((s = stdError.readLine()) != null) {
-                    logger.error(s);
+                    System.out.println("stdError error:" + s);
+                    //logger.error(s);
                 }
                 try {
                     runningStatus = p.waitFor();
