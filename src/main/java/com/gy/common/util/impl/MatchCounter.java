@@ -45,6 +45,7 @@ public class MatchCounter implements Callable<ArrayList<String>> {
                 Matcher match = pattern.matcher(file.getName());
                 if (!match.find()) {
                     if (file.isDirectory()) {//查找所有文件，加入数组
+                        // TODO: 3/15/17 不做支持查找子目录 
                         MatchCounter counter = new MatchCounter(file, keyword, pool);
                         Future<ArrayList<String>> resultFuture = pool.submit(counter);
                         results.add(resultFuture);
@@ -94,7 +95,7 @@ public class MatchCounter implements Callable<ArrayList<String>> {
         Matcher matcher = pattern.matcher(string);
         while (matcher.find()) {
             String matchStr2 = matcher.group();
-            System.out.println(matcher.group());
+            //System.out.println(matcher.group());
             String keywordString2 = "[\"<>']+";
             Pattern con2 = Pattern.compile(keywordString2);
             Matcher matcher2 = con2.matcher(matchStr2);
@@ -126,7 +127,7 @@ public class MatchCounter implements Callable<ArrayList<String>> {
                     Pattern con = Pattern.compile(keywordString);
                     //再匹配一次，挑出内容
                     Matcher matcher1 = con.matcher(string);
-                    System.out.println(string);
+                    //System.out.println(string);
                     if (matcher1.find()) {
                         //String keywordString2 = "[\\u4e00-\\u9fa5]+((\\d-)?[\\x00-\\xff]?)?[\\u4e00-\\u9fa5]+";
                         String keywordString2 = "[\"<>']+";
@@ -157,8 +158,8 @@ public class MatchCounter implements Callable<ArrayList<String>> {
     private void saveData(File file, ArrayList<String> data, Matcher matcher) {
         String filePath = file.getPath();
         String[] folder = filePath.split("/");
-        System.out.println(matcher.group());
-        System.out.println(matcher.groupCount());
+        //System.out.println(matcher.group());
+        //System.out.println(matcher.groupCount());
         String pyString;
         try {
             pyString = getPinYin(matcher.group());
@@ -197,8 +198,8 @@ public class MatchCounter implements Callable<ArrayList<String>> {
             //WITH_TONE_NUMBER: 加上音标识别 WITHOUT_TONE:不识别
             res = PinyinHelper.convertToPinyinString(tmpText, "", leng < 4 ? PinyinFormat.WITH_TONE_NUMBER : PinyinFormat.WITHOUT_TONE);
         }
-        if (res.length() > 20) {
-            return res.substring(0, 20);
+        if (res.length() > 25) {
+            return res.substring(0, 25);
         }
         return res;
     }
