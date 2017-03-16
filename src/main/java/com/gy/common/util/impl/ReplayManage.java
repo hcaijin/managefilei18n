@@ -1,10 +1,12 @@
 package com.gy.common.util.impl;
 
 
-import java.io.*;
-import java.util.*;
+import com.gy.common.util.tool.ToolUtil;
 
-import static com.gy.common.util.tool.ToolUtil.sortResult;
+import java.io.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hcj on 3/13/17.
@@ -36,7 +38,7 @@ public class ReplayManage {
                     dealLine(strings, maps);
                 }
                 reader.close();
-                List<Map.Entry<String, Integer>> lists = sortResult(maps);
+                List<Map.Entry<String, Integer>> lists = ToolUtil.sortResult(maps);
                 int totalNum = saveToFile(name, lists);
                 System.out.println("total line:" + totalNum);
             }
@@ -74,14 +76,14 @@ public class ReplayManage {
         fos.write(startLine.getBytes());
         fos.write(FILENF.getBytes());
         for (Map.Entry<String, Integer> entry : list) {
-            //System.out.println(entry.getValue() + ":" + entry.getKey());
+            System.out.println(entry.getValue() + ":" + entry.getKey());
             String valueKey = entry.getKey();
             Integer value = entry.getValue();
             if (valueKey != null && valueKey.length() > 0) {
                 String[] arrayStr = valueKey.split("=");
                 if (arrayStr.length == 2) {
                     String line = valueKey;
-                    if (value > 8) {
+                    if (value > 5) {
                         line = valueKey.replaceAll("\\.web\\.", ".common.");
                     }
                     fos.write(line.getBytes());

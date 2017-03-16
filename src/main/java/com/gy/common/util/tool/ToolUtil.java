@@ -6,9 +6,15 @@ import java.util.*;
 /**
  * Created by hcj on 3/13/17.
  */
-public class ToolUtil {
+public abstract class ToolUtil {
     private final static String ENCODING = "UTF-8";
 
+    /**
+     * 一次读取文件内容到内存中
+     *
+     * @param file
+     * @return
+     */
     public static String readToString(File file) {
         Long filelength = file.length();
         byte[] filecontent = new byte[filelength.intValue()];

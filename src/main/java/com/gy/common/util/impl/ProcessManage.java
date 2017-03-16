@@ -1,9 +1,11 @@
 package com.gy.common.util.impl;
 
-import java.io.*;
-import java.util.*;
+import com.gy.common.util.tool.ToolUtil;
 
-import static com.gy.common.util.tool.ToolUtil.sortResult;
+import java.io.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hcj on 3/16/17.
@@ -36,7 +38,7 @@ public class ProcessManage {
                     dealLines(string, map);
                 }
                 inScanner.close();
-                replaySpringMsg(sortResult(map));
+                replaySpringMsg(ToolUtil.sortResult(map));
             }
         } catch (IOException e) {
             e.printStackTrace();

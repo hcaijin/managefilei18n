@@ -1,6 +1,8 @@
 import org.junit.Test;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -676,4 +678,42 @@ public class PatternMatchTest {
         String line = str.replaceAll("\\.web\\.", ".common.");
         System.out.print(line);
     }
+
+    @Test
+    public void test9() {
+        List<String> strList = new ArrayList<>();
+        strList.add("111111111@111111");
+        strList.add("222222222@222222");
+        strList.add("333333333@333333");
+        strList.add("@444444");
+        strList.add("555555555@555555");
+        strList.add("666666666@666666");
+        for (String id : strList) {
+            if (isEmpty(id))
+                continue;
+            String[] temp = id.split("@");
+            if (null == temp || temp.length < 2)
+                continue;
+            String skuId = temp[0];
+            String shopId = temp[1];
+            if (isEmpty(skuId))
+                continue;
+
+            System.out.println("skuId: " + skuId + "\tshopId: " + shopId);
+        }
+    }
+
+    private static boolean isEmpty(String value) {
+        int strLen;
+        if (value == null || (strLen = value.length()) == 0) {
+            return true;
+        }
+        for (int i = 0; i < strLen; i++) {
+            if ((Character.isWhitespace(value.charAt(i)) == false)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
