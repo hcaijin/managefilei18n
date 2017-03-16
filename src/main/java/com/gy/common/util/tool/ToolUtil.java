@@ -1,6 +1,7 @@
 package com.gy.common.util.tool;
 
 import java.io.*;
+import java.util.*;
 
 /**
  * Created by hcj on 3/13/17.
@@ -27,5 +28,21 @@ public class ToolUtil {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * 排序结果
+     *
+     * @param result
+     * @return
+     */
+    public static List<Map.Entry<String, Integer>> sortResult(Map result) {
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(result.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return o2.getValue().compareTo(o1.getValue());
+            }
+        });
+        return list;
     }
 }

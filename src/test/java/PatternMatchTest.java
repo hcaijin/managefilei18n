@@ -669,4 +669,11 @@ public class PatternMatchTest {
             System.out.println(matcher.group());
         }
     }
+
+    @Test
+    public void test8() {
+        String str = "cerp.web.tc.delivery.qingshurushangpintiaoma";
+        String line = str.replaceAll("\\.web\\.", ".common.");
+        System.out.print(line);
+    }
 }

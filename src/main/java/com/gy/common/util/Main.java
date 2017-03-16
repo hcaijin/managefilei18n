@@ -53,7 +53,7 @@ public class Main {
             }
             // ReplaySpringMessage Main:
             String outFile = System.getProperty("user.dir") + "/temp/messages.properties";
-            ReplayManage replayManage = new ReplayManage(directory, file, outFile);
+            ReplayManage replayManage = new ReplayManage(file, outFile);
             replayManage.doReplay(dirFile.getName());
 
             System.exit(0);
