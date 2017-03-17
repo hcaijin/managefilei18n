@@ -1,5 +1,6 @@
 package com.gy.common.util;
 
+import com.gy.common.util.entity.MatchCounterInfo;
 import com.gy.common.util.impl.MatchCounter;
 import com.gy.common.util.impl.ReplayManage;
 
@@ -30,14 +31,21 @@ public class Main {
             // TODO: 3/17/17 17号17:00 准备开始：
             String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/info/";
 
+            //String keywordString = "^[^//*]*[\\u4e00-\\u9fa5]+";
             //input file dir
             File dirFile = new File(directory);
             //output file
             String file = System.getProperty("user.dir") + "/temp/" + dirFile.getName() + "-outputfile.txt";
 
-            String keywordString = "^[^//*]*[\\u4e00-\\u9fa5]+";
+            MatchCounterInfo matchCounterInfo = new MatchCounterInfo();
+            matchCounterInfo.setDirectoryFile(directory);
+            // cerp.[程序].[模块].[功能].[key]
+            matchCounterInfo.setProgramName("web");
+            matchCounterInfo.setModuleName("info");
+            matchCounterInfo.setFeatures("platform");
+
             ExecutorService pool = Executors.newCachedThreadPool();//线程池
-            MatchCounter dataArrayList = new MatchCounter(dirFile, keywordString, pool);
+            MatchCounter dataArrayList = new MatchCounter(pool, matchCounterInfo);
             Future<ArrayList<String>> resultFuture = pool.submit(dataArrayList);//获取结果
 
             //输出结果

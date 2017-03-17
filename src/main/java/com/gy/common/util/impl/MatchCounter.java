@@ -2,8 +2,10 @@ package com.gy.common.util.impl;
 
 import com.github.stuxuhai.jpinyin.PinyinFormat;
 import com.github.stuxuhai.jpinyin.PinyinHelper;
+import com.gy.common.util.entity.MatchCounterInfo;
+import com.gy.common.util.tool.ToolUtil;
 
-import java.io.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -12,40 +14,33 @@ import java.util.concurrent.Future;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.gy.common.util.tool.ToolUtil.readToString;
 
 /**
  * Created by hcj on 3/12/17.
  */
 public class MatchCounter implements Callable<ArrayList<String>> {
 
-    private final static String ENCODING = "UTF-8";
-
-    /**
-     * 要操作的文件夹目录
-     */
-    private File directoryFile;
-    /**
-     * 匹配规则
-     */
-    private String keyword;
     /**
      * 线程
      */
     private ExecutorService pool;
+    /**
+     * 匹配的对象
+     */
+    private MatchCounterInfo info;
 
-    public MatchCounter(File directoryFile, String keyword, ExecutorService pool) {
-        this.directoryFile = directoryFile;
-        this.keyword = keyword;
+    public MatchCounter(ExecutorService pool, MatchCounterInfo info) {
         this.pool = pool;
+        this.info = info;
     }
 
     @Override
     public ArrayList<String> call() throws Exception {
         // TODO Auto-generated method stub
         ArrayList<String> dataArrayList = new ArrayList<String>();
-        ArrayList<String> temp;
+        ArrayList<String> temp = null;
         try {
+            File directoryFile = new File(info.getDirectoryFile());
             File[] files = directoryFile.listFiles();
             ArrayList<Future<ArrayList<String>>> results = new ArrayList<Future<ArrayList<String>>>();
 
@@ -54,13 +49,12 @@ public class MatchCounter implements Callable<ArrayList<String>> {
                 Matcher match = pattern.matcher(file.getName());
                 if (!match.find()) {
                     if (file.isDirectory()) {//查找所有文件，加入数组
-                        // TODO: 3/15/17 不做支持查找子目录 
-                        MatchCounter counter = new MatchCounter(file, keyword, pool);
+                        MatchCounter counter = new MatchCounter(pool, info);
                         Future<ArrayList<String>> resultFuture = pool.submit(counter);
                         results.add(resultFuture);
                     } else {//查找文件内容
                         //System.out.println(file.getName());
-                        String fileStr = readToString(file);
+                        String fileStr = ToolUtil.readToString(file);
                         //String patterKey = "<(!|#)--(.|[\r\n])*?-->";
                         String patterKey = "(<(!|#)--(.|[\r\n])*?-->)|(//.*)";
                         Pattern pattern2 = Pattern.compile(patterKey);
@@ -71,8 +65,6 @@ public class MatchCounter implements Callable<ArrayList<String>> {
                         }
                         if (replayStr.length() > 0) {
                             temp = search(file, replayStr);
-                        } else {
-                            temp = search(file);
                         }
                         if (temp != null) {
                             dataArrayList.addAll(temp);
@@ -122,48 +114,6 @@ public class MatchCounter implements Callable<ArrayList<String>> {
         return data;
     }
 
-    private ArrayList<String> search(File file) throws InterruptedException {
-        try {
-            ArrayList<String> data = new ArrayList<String>();
-            BufferedReader inScanner = new BufferedReader(new InputStreamReader(new FileInputStream(file), ENCODING));
-            String string;
-            while ((string = inScanner.readLine()) != null) {
-                //正则表达式匹配，选出行
-                Pattern pattern = Pattern.compile(keyword);
-                Matcher matcher = pattern.matcher(string);
-                if (matcher.find()) {
-                    String keywordString = "[\\u4e00-\\u9fa5].*[\\u4e00-\\u9fa5]+(\\))?";
-                    Pattern con = Pattern.compile(keywordString);
-                    //再匹配一次，挑出内容
-                    Matcher matcher1 = con.matcher(string);
-                    //System.out.println(string);
-                    if (matcher1.find()) {
-                        //String keywordString2 = "[\\u4e00-\\u9fa5]+((\\d-)?[\\x00-\\xff]?)?[\\u4e00-\\u9fa5]+";
-                        String keywordString2 = "[\"<>']+";
-                        Pattern con2 = Pattern.compile(keywordString2);
-                        Matcher matcher2 = con2.matcher(string);
-                        if (matcher2.find()) {
-                            String keywordString3 = "[\\u4e00-\\u9fa5]+";
-                            Pattern con3 = Pattern.compile(keywordString3);
-                            Matcher matcher3 = con3.matcher(string);
-                            while (matcher3.find()) {
-                                saveData(file, data, matcher3);
-                            }
-                        } else {
-                            saveData(file, data, matcher1);
-                        }
-                    }
-                }
-            }
-            inScanner.close();
-            return data;
-        } catch (IOException e) {
-            // TODO: handle exception
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     private void saveData(File file, ArrayList<String> data, Matcher matcher) {
         String filePath = file.getPath();
         String[] folder = filePath.split("/");
@@ -173,13 +123,13 @@ public class MatchCounter implements Callable<ArrayList<String>> {
         try {
             pyString = getPinYin(matcher.group());
         } catch (Exception ex) {
-            pyString = "";
+            pyString = "error";
             ex.printStackTrace();
         }
-        data.add("cerp.web.");
-        data.add(folder[folder.length - 3]);//tc|info
+        data.add(info.getProgramName() != null ? "cerp." + info.getProgramName() + "." : "cerp.web.");
+        data.add(info.getModuleName() != null ? info.getModuleName() : folder[folder.length - 3]);//tc|info
         data.add(".");
-        data.add(folder[folder.length - 2]);//文件夹
+        data.add(info.getFeatures() != null ? info.getFeatures() : folder[folder.length - 2]);//上级文件夹
         data.add(".");
         data.add(pyString);//中文转换为拼音的节点
         data.add("=");
