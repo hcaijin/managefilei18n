@@ -21,8 +21,17 @@ public class MatchCounter implements Callable<ArrayList<String>> {
 
     private final static String ENCODING = "UTF-8";
 
+    /**
+     * 要操作的文件夹目录
+     */
     private File directoryFile;
+    /**
+     * 匹配规则
+     */
     private String keyword;
+    /**
+     * 线程
+     */
     private ExecutorService pool;
 
     public MatchCounter(File directoryFile, String keyword, ExecutorService pool) {
