@@ -1,5 +1,7 @@
 package com.gy.common.util.entity;
 
+import java.io.File;
+
 /**
  * Created by hcj on 3/17/17.
  * cerp.common.[模块].[功能].[key]
@@ -9,7 +11,7 @@ public class MatchCounterInfo {
     /**
      * 要操作的文件夹目录
      */
-    private String directoryFile;
+    private File directoryFile;
     /**
      * 自定义程序名
      */
@@ -23,11 +25,11 @@ public class MatchCounterInfo {
      */
     private String features;
 
-    public String getDirectoryFile() {
+    public File getDirectoryFile() {
         return directoryFile;
     }
 
-    public void setDirectoryFile(String directoryFile) {
+    public void setDirectoryFile(File directoryFile) {
         this.directoryFile = directoryFile;
     }
 

@@ -18,13 +18,22 @@ public class DoProcessMain {
             //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/tc/vipjit/";
             // TODO: 3/17/17 17号16:00已经执行过这个目录了，不要在执行，注释掉
             //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/tc/unpayed/";
-            // TODO: 3/17/17 17号17:00 准备开始：
-            String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/info/";
+            // TODO: 3/20/17 20号11:00 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/vip/vip/";
+            // TODO: 3/20/17 15:00 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/template/";
+            // TODO: 3/20/17 15:20 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/task/";
+            // TODO: 3/20/17 15:45 准备执行 
+            String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/stock/";
 
+            //String version = "";
+            //String version = "-v1.0";
+            String version = "-v9.0";
 
 
             File dirFile = new File(directory);
-            String file = System.getProperty("user.dir") + "/temp/" + dirFile.getName() + "-messages.properties";
+            String file = System.getProperty("user.dir") + "/temp/" + dirFile.getName() + "-messages" + version + ".properties";
             ProcessManage processManage = new ProcessManage(file, directory);
             processManage.doProcess();
         } catch (Exception e) {

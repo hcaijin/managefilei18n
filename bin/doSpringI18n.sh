@@ -5,6 +5,10 @@
 ##
 ## find . -iregex "./[a-z]+\.ftl" | xargs sed -i 's/会员名称/<@spring.message \"cerp.web.tc.delivery.huiyuanmingcheng\"\/>/g'
 ##
+## find . -name '*.ftl' | xargs sed -i 's#采购数量 = 安全库存 - （可销售数量 + 在途数量）#<@spring\.message "cerp.web.stock.purchase.cgslvvvaqkcvvvvkxsslvvvzt"/>#g'
+##
+## find . -name '*.ftl' | xargs sed -i "s#请选择正确的excel文件\[支持.xls/.xlsx格式\]！#<@spring\.message \"cerp.web.stock.qingxuanceexcel\"/>#g"
+##
 
 KEY=$1
 NAME=$2
@@ -14,8 +18,11 @@ DIR=$3
 #echo $NAME
 #echo $DIR
 
-cd ${DIR}
+#cd ${DIR}
 #echo "find . -iregex \"./[a-z]+\.ftl\" >> ./dospringi18n-find.log"
 #find . -iregex "./[a-z]+\.ftl" >> ./doSpringI18n-find.log
-find . -iregex "./[a-z]+\.ftl" | xargs sed -i "s#\<$NAME\>#<@spring\.message \"$KEY\"/>#g"
+#### except inclue nums file
+#find . -iregex "./[a-z]+\.ftl" | xargs sed -i "s#\<$NAME\>#<@spring\.message \"$KEY\"/>#g"
+### do all ftl file
+find ${DIR} -name "*.ftl" | xargs sed -i "s#$NAME#<@spring\.message \"$KEY\"/>#g"
 [[ $? -ne 0 ]] && exit 2

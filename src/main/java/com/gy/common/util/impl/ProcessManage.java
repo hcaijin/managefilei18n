@@ -67,7 +67,7 @@ public class ProcessManage {
         for (Map.Entry<String, Integer> entry : list) {
             String value = entry.getKey();
             if (value != null && value.length() > 0) {
-                String[] str = value.split("=");
+                String[] str = value.split("@#@");
                 if (str.length == 2) {
                     int stat = doProcess(str, fileDirStr, 1);
                     if (stat == 2) {
@@ -91,7 +91,7 @@ public class ProcessManage {
         //默认2就是返回失败
         int runningStatus = 2;
         String param1 = str[0];
-        String param2 = str[1];
+        String param2 = str[1].replaceAll("\\[", "\\\\[").replaceAll("\\]", "\\\\]").replaceAll("#", "\\\\#");
         if (status == 1) {
             ProcessBuilder pb = new ProcessBuilder("./" + RUNNING_SHELL_FILE, param1, param2, param3);
             pb.directory(new File(SHELL_FILE_DIR));
