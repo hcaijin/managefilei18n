@@ -18,11 +18,16 @@ DIR=$3
 #echo $NAME
 #echo $DIR
 
-#cd ${DIR}
+cd ${DIR}
+
 #echo "find . -iregex \"./[a-z]+\.ftl\" >> ./dospringi18n-find.log"
 #find . -iregex "./[a-z]+\.ftl" >> ./doSpringI18n-find.log
 #### except inclue nums file
 #find . -iregex "./[a-z]+\.ftl" | xargs sed -i "s#\<$NAME\>#<@spring\.message \"$KEY\"/>#g"
+### do inclue nums file has \< \>
+find . -iregex "./[a-z]+\.ftl" | xargs sed -i "s#$NAME#<@spring\.message \"$KEY\"/>#g"
 ### do all ftl file
-find ${DIR} -name "*.ftl" | xargs sed -i "s#$NAME#<@spring\.message \"$KEY\"/>#g"
+#find . -name "*.ftl" | xargs sed -i "s#$NAME#<@spring\.message \"$KEY\"/>#g"
+### do all \< \>
+#find . -name "*.ftl" | xargs sed -i "s#\<$NAME\>#<@spring\.message \"$KEY\"/>#g"
 [[ $? -ne 0 ]] && exit 2
