@@ -52,11 +52,14 @@ public class Main {
             //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/admin/";
             // TODO: 3/23/17 16:24 已经执行过这个目录了，不要在执行，注释掉
             //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/index/";
-            // TODO: 3/23/17 17:00 准备执行
+            // TODO: 3/24/17 14:00 准备执行
             String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/info/";
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/info/express/";
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/info/email/";
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/info/platform/";
 
-            String version = "";
-            //String version = "-v1.0";
+            //String version = "";
+            String version = "-v2.0";
             //String version = "-finance-v1.0";
             //String version = "-admin-v1.0";
 

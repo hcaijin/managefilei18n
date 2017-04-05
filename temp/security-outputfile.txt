@@ -1,0 +1,13 @@
+cerp.web.info.security.shoujidengluyanzheng@@@@手机登录验证
+cerp.web.info.security.shoujihaomageshibuzhengqu@@@@手机号码格式不正确
+cerp.web.info.security.qingzhengquetianxiexuanxi@@@@请正确填写选项
+cerp.web.info.security.kongzhimianban@@@@控制面板
+cerp.web.info.security.anquanshezhi@@@@安全设置
+cerp.web.info.security.shoujidengluyanzheng@@@@手机登录验证
+cerp.web.info.security.shoujiduanxindengluyanzhe@@@@手机短信登录验证参数
+cerp.web.info.security.kaiqidengluyanzhengvv@@@@开启登录验证*：
+cerp.web.info.security.shi4@@@@是
+cerp.web.info.security.fou3@@@@否
+cerp.web.info.security.duanxinzhanghaovv@@@@短信账号*：
+cerp.web.info.security.morenyanzhengshouji@@@@默认验证手机
+cerp.web.info.security.bao3cun2@@@@保存

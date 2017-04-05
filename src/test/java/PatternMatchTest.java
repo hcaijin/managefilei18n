@@ -1692,647 +1692,902 @@ public class PatternMatchTest {
 
     @Test
     public void test12() {
+        //String fileStr = "<#assign ctx=\"${rc.contextPath}\">\n" +
+        //        "<#assign shiro=JspTaglibs[\"/WEB-INF/shiro.tld\"]>\n" +
+        //        "<html>\n" +
+        //        "<head>\n" +
+        //        "    <title>商品库存信息</title>\n" +
+        //        "</head>\n" +
+        //        "<body>\n" +
+        //        "<div class=\"breadcrumb\">库存中心 > 库存信息 > 商品库存信息</div>\n" +
+        //        "<div class=\"hidden\">\n" +
+        //        "    <form id=\"frmItemSearch\" class=\"reset-box form-inline form-default-col cf\" method=\"post\">\n" +
+        //        "        <div class=\"form-item fi-block\">\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <input id=\"searchBtn\" class=\"btn btn-primary\" type=\"button\" value=\"搜索\"/>\n" +
+        //        "                <input id=\"resetBtn\" class=\"btn\" type=\"reset\" value=\"重置条件\"/>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">商品代码</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <input type=\"text\" id=\"code\" class=\"text\" name=\"code\"/>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">规格代码</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <input type=\"text\" id=\"skuCode\" class=\"text\" name=\"skuCode\"/>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">规格名称</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <input class=\"text\" type=\"text\" id=\"skuName\" name=\"skuName\"/>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">商品条码</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <input type=\"text\" id=\"barCode\" class=\"text\" name=\"barCode\"/>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">商品简称</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <input type=\"text\" id=\"sName\" class=\"text\" name=\"sName\"/>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">商品名称</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <input type=\"text\" id=\"name\" class=\"text\" name=\"name\"/>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">仓库名称</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <input type=\"text\" id=\"warehouseId\" class=\"text\" name=\"warehouseId\"/>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">商品类别</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <div id=\"categoryId\" class=\"ext-combotree\"></div>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\"></div>\n" +
+        //        "        <div class=\"form-item\"></div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">供应商</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <input type=\"text\" id=\"supplierId\" class=\"text\" name=\"supplierId\"/>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-field qty-type\">\n" +
+        //        "                <select name=\"qtyType\">\n" +
+        //        "                    <option value=\"1\">库存数量</option>\n" +
+        //        "                    <option value=\"2\">可销售数</option>\n" +
+        //        "                    <option value=\"3\">可配数量</option>\n" +
+        //        "                    <option value=\"4\">在途数量</option>\n" +
+        //        "                    <option value=\"5\">安全库存</option>\n" +
+        //        "                </select>\n" +
+        //        "\n" +
+        //        "                <div class=\"input-combo\">\n" +
+        //        "                    <input type=\"text\" class=\"text input-small\" name=\"qtyMin\"/>\n" +
+        //        "                    <span class=\"combo-split\">-</span>\n" +
+        //        "                    <input type=\"text\" class=\"text input-small\" name=\"qtyMax\"/>\n" +
+        //        "                </div>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div id=\"chkStatus\" class=\"form-field\">\n" +
+        //        "                <label class=\"checkbox\"><input type=\"checkbox\" sign=\"disable\" data-type='0'/>停用</label>\n" +
+        //        "                <label class=\"checkbox\"><input type=\"checkbox\" sign=\"aew\"/>库存预警</label>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "    </form>\n" +
+        //        "</div>\n" +
+        //        "\n" +
+        //        "<div class=\"hidden\">\n" +
+        //        "    <!-- 主表格 - 按钮工具栏 -->\n" +
+        //        "    <div id=\"tbStockToolBar\" class=\"tbar\">\n" +
+        //        "    <@shiro.hasPermission name=\"enable:/stock/message/stock_tenant\">\n" +
+        //        "        <a href=\"javascript:;\" id=\"batchEnableBtn\" class=\"gy-l-btn\">\n" +
+        //        "            <i class=\"new-icon-enable\"></i><span class=\"gy-l-btn-text\">批量启用</span>\n" +
+        //        "        </a>\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "    <@shiro.lacksPermission name=\"enable:/stock/message/stock_tenant\">\n" +
+        //        "        <a href=\"javascript:;\" class=\"gy-l-btn disabled\">\n" +
+        //        "            <i class=\"new-icon-enable\"></i><span class=\"gy-l-btn-text\">批量启用</span>\n" +
+        //        "        </a>\n" +
+        //        "    </@shiro.lacksPermission>\n" +
+        //        "\n" +
+        //        "    <@shiro.hasPermission name=\"delete:/stock/message/stock_tenant\">\n" +
+        //        "        <a href=\"javascript:;\" id=\"batchStopBtn\" class=\"gy-l-btn\">\n" +
+        //        "            <i class=\"new-icon-stop\"></i><span class=\"gy-l-btn-text\">批量停用</span>\n" +
+        //        "        </a>\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "    <@shiro.lacksPermission name=\"delete:/stock/message/stock_tenant\">\n" +
+        //        "        <a href=\"javascript:;\" class=\"gy-l-btn disabled\">\n" +
+        //        "            <i class=\"new-icon-stop\"></i><span class=\"gy-l-btn-text\">批量停用</span>\n" +
+        //        "        </a>\n" +
+        //        "    </@shiro.lacksPermission>\n" +
+        //        "\n" +
+        //        "    <@shiro.hasPermission name=\"calc:/stock/message/stock_tenant\">\n" +
+        //        "        <a href=\"javascript:;\" id=\"calStockBtn\" class=\"gy-l-btn\">\n" +
+        //        "            <i class=\"new-icon-init\"></i><span class=\"gy-l-btn-text\">重新计算安全库存</span>\n" +
+        //        "        </a>\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "    <@shiro.lacksPermission name=\"calc:/stock/message/stock_tenant\">\n" +
+        //        "        <a href=\"javascript:;\" class=\"gy-l-btn disabled\">\n" +
+        //        "            <i class=\"new-icon-init\"></i><span class=\"gy-l-btn-text\">重新计算安全库存</span>\n" +
+        //        "        </a>\n" +
+        //        "    </@shiro.lacksPermission>\n" +
+        //        "\n" +
+        //        "    <@shiro.hasPermission name=\"export:/stock/message/stock_tenant\">\n" +
+        //        "        <a href=\"javascript:;\" id=\"exportItemBtn\" class=\"gy-l-btn\">\n" +
+        //        "            <i class=\"new-icon-export\"></i><span class=\"gy-l-btn-text\">商品库存导出CSV</span>\n" +
+        //        "        </a>\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "    <@shiro.lacksPermission name=\"export:/stock/message/stock_tenant\">\n" +
+        //        "        <a href=\"javascript:;\" class=\"gy-l-btn disabled\">\n" +
+        //        "            <i class=\"new-icon-export\"></i><span class=\"gy-l-btn-text\">商品库存导出CSV</span>\n" +
+        //        "        </a>\n" +
+        //        "    </@shiro.lacksPermission>\n" +
+        //        "\n" +
+        //        "    <@shiro.hasPermission name=\"update:/stock/message/stock_tenant\">\n" +
+        //        "        <a href=\"javascript:;\" id=\"updateSafeQty\" class=\"gy-l-btn\">\n" +
+        //        "            <i class=\"new-icon-settings\"></i><span class=\"gy-l-btn-text\">设置安全库存</span>\n" +
+        //        "        </a>\n" +
+        //        "        <a href=\"javascript:;\" id=\"\" class=\"gy-l-btn gy-split-btn\" data-menu=\"mmSettings\">\n" +
+        //        "            <i class=\"new-icon-import\"></i><span class=\"gy-l-btn-text\">安全库存导入</span>\n" +
+        //        "            <span class=\"gy-l-btn-line\"><b class=\"caret caret-b\"></b></span>\n" +
+        //        "        </a>\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "    <@shiro.lacksPermission name=\"update:/stock/message/stock_tenant\">\n" +
+        //        "        <a href=\"javascript:;\" class=\"gy-l-btn disabled\">\n" +
+        //        "            <i class=\"new-icon-settings\"></i><span class=\"gy-l-btn-text\">设置安全库存</span>\n" +
+        //        "        </a>\n" +
+        //        "        <a href=\"javascript:;\" class=\"gy-l-btn gy-split-btn disabled\">\n" +
+        //        "            <i class=\"new-icon-import\"></i><span class=\"gy-l-btn-text\">安全库存导入</span>\n" +
+        //        "            <span class=\"gy-l-btn-line\"><b class=\"caret caret-b\"></b></span>\n" +
+        //        "        </a>\n" +
+        //        "    </@shiro.lacksPermission>\n" +
+        //        "\n" +
+        //        "    <@shiro.hasPermission name=\"template:/stock/message/stock_tenant\">\n" +
+        //        "        <a href=\"javascript:;\" id=\"tplDownloadBtn\" class=\"gy-l-btn gy-split-btn\" data-menu=\"mmDownload\">\n" +
+        //        "            <i class=\"new-icon-download\"></i><span class=\"gy-l-btn-text\">安全库存导入模版下载</span>\n" +
+        //        "            <span class=\"gy-l-btn-line\"><b class=\"caret caret-b\"></b></span>\n" +
+        //        "        </a>\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "    <@shiro.lacksPermission name=\"template:/stock/message/stock_tenant\">\n" +
+        //        "        <a href=\"javascript:;\" class=\"gy-l-btn disabled\">\n" +
+        //        "            <i class=\"new-icon-download\"></i><span class=\"gy-l-btn-text\">安全库存导入模版下载</span>\n" +
+        //        "        </a>\n" +
+        //        "    </@shiro.lacksPermission>\n" +
+        //        "        <a id=\"resetLayoutBtn\" class=\"gy-l-btn\" href=\"javascript:;\">\n" +
+        //        "            <i class=\"new-icon-layout\"></i><span class=\"gy-l-btn-text\">恢复布局</span>\n" +
+        //        "        </a>\n" +
+        //        "\n" +
+        //        "        <!-- 库存数量汇总 -->\n" +
+        //        "        <div class=\"counter-bar cf\">\n" +
+        //        "            <div class=\"counter-lab\">库存汇总</div>\n" +
+        //        "            <div class=\"counter-item\">\n" +
+        //        "                <span>库存总数：</span>\n" +
+        //        "                <span id=\"qtyCount\" class=\"color3\">0</span>\n" +
+        //        "                <span id=\"refreshStockBtn\" class=\"icon-refresh-1\"></span>\n" +
+        //        "            </div>\n" +
+        //        "        <#--<div class=\"counter-item\">\n" +
+        //        "            <span>成本总金额：</span>\n" +
+        //        "            <span id=\"costPriceCount\">0</span>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"counter-item\">\n" +
+        //        "            <span>销售总金额：</span>\n" +
+        //        "            <span id=\"salesPriceCount\">0</span>\n" +
+        //        "        </div>-->\n" +
+        //        "        </div>\n" +
+        //        "    </div> <!-- end #tbStockToolBar -->\n" +
+        //        "\n" +
+        //        "    <!-- 设置安全库存 - 弹出框表单 -->\n" +
+        //        "    <form id=\"setSaveStockForm\" class=\"form-vertical reset-box\" method=\"post\">\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">请输入安全库存数：</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <input type=\"text\" id=\"saveStockNum\" class=\"text\"/>\n" +
+        //        "\n" +
+        //        "                <p id=\"saveStockNumTips\" class=\"form-tips must\"></p>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "    </form>\n" +
+        //        "    <!-- 重新计算安全库存 - 弹出框表单 -->\n" +
+        //        "    <form id=\"frmStockCalc\" class=\"form-horizontal\" action=\"${ctx}/stock/message/stock_tenant/stockCalc\" method=\"post\">\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">选择仓库</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <span class=\"must\">*</span>\n" +
+        //        "                <input type=\"text\" class=\"text\" id=\"winWarehouseId\"/>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">日销量</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <select name=\"day\">\n" +
+        //        "                    <option value=\"3\">最近3天日销量</option>\n" +
+        //        "                    <option value=\"7\">最近7天日销量</option>\n" +
+        //        "                    <option value=\"15\">最近15天日销量</option>\n" +
+        //        "                </select>\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "        <div class=\"form-item\">\n" +
+        //        "            <div class=\"form-lab\">微调比例</div>\n" +
+        //        "            <div class=\"form-field\">\n" +
+        //        "                <input name=\"ratio\" type=\"text\" class=\"text\" value=\"100\"> %\n" +
+        //        "            </div>\n" +
+        //        "        </div>\n" +
+        //        "    </form>\n" +
+        //        "</div>\n" +
+        //        "\n" +
+        //        "<!-- 安全库存导出 - 下拉菜单 -->\n" +
+        //        "<div id=\"mmSettings\" class=\"gy-menu hidden\">\n" +
+        //        "    <div class=\"gy-menu-item\" id=\"importDataItem\">\n" +
+        //        "        <span class=\"menu-text\">商品导入安全库存</span>\n" +
+        //        "    </div>\n" +
+        //        "    <div class=\"gy-menu-item\" id=\"importDataBarCode\">\n" +
+        //        "        <span class=\"menu-text\">条码导入安全库存</span>\n" +
+        //        "    </div>\n" +
+        //        "</div>\n" +
+        //        "\n" +
+        //        "<!-- 安全库存导入模板下载 - 下拉菜单 -->\n" +
+        //        "<div id=\"mmDownload\" class=\"gy-menu hidden\">\n" +
+        //        "    <div class=\"gy-menu-item\" id=\"itemTemplateDownload\">\n" +
+        //        "        <span class=\"menu-text\">商品导入安全模板下载</span>\n" +
+        //        "    </div>\n" +
+        //        "    <div class=\"gy-menu-item\" id=\"barCodeTemplateDownload\">\n" +
+        //        "        <span class=\"menu-text\">条码导入安全模板下载</span>\n" +
+        //        "    </div>\n" +
+        //        "</div>\n" +
+        //        "\n" +
+        //        "<!-- 安全库存导入表单 -->\n" +
+        //        "<form id=\"importForm\" class=\"hidden\" method=\"post\" enctype=\"multipart/form-data\">\n" +
+        //        "    <input type=\"file\" id=\"file\" name=\"file\"/>\n" +
+        //        "</form>\n" +
+        //        "\n" +
+        //        "<script>\n" +
+        //        "    var GLB = {\n" +
+        //        "        pageNumber: '${pageNumber!}',\n" +
+        //        "        pageSize: '${pageSize!}',\n" +
+        //        "        userId: '${user.id}',\n" +
+        //        "        unique: '<@shiro.hasPermission name=\"systemallstartuniquecode:view\">1</@shiro.hasPermission>',\n" +
+        //        "        batch: '<@shiro.hasPermission name=\"SystemBatchManage:view\">1</@shiro.hasPermission>',\n" +
+        //        "        postSort: ''\n" +
+        //        "    };\n" +
+        //        "    var mainColumns = [\n" +
+        //        "        {xtype: \"rownumberer\", resizable: true},\n" +
+        //        "        {dataIndex: 'del', header: '停用', width: 55, align: 'center'},\n" +
+        //        "    <@shiro.hasPermission name=\"systemallstartuniquecode:view\">\n" +
+        //        "        {dataIndex: 'unique', header: '唯一码', width: 55, align: 'center'},\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "        {dataIndex: 'picUrl', header: '图片', width: 90, align: 'center'},\n" +
+        //        "        {dataIndex: 'skuPicUrl', header: '规格图片', width: 90, align: 'center'},\n" +
+        //        "    <@shiro.hasPermission name=\"systemallstartuniquecode:view\">\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'id', header: '唯一码信息', width: 80,\n" +
+        //        "            renderer: function (v, record, idx) {\n" +
+        //        "                return \"<a href='javascript:void(0);'>唯一码信息</a>\";\n" +
+        //        "            }\n" +
+        //        "        },\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "    <@shiro.hasPermission name=\"SystemBatchManage:view\">\n" +
+        //        "        {dataIndex: 'batchManagement', header: '批次', width: 60},\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'id', header: '批次信息', width: 80,\n" +
+        //        "            renderer: function (v, record, idx) {\n" +
+        //        "                return \"<a href='javascript:void(0);'>批次信息</a>\";\n" +
+        //        "            }\n" +
+        //        "        },\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'code', header: '商品代码', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'itemName', header: '商品名称', width: 160, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'categoryName', header: '商品类别', width: 160, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'skuCode', header: '商品规格代码', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'itemSkuName', header: '商品规格名称', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'itemBarcode', header: '商品条码', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'itemSimpleName', header: '商品简称', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'supplierName', header: '供应商', width: 100, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'warehouseName', header: '仓库', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'itemUnitName', header: '单位', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'locName', header: '库位', width: 90, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'qty', header: '库存数量', width: 70, align: 'center',\n" +
+        //        "            summaryType: 'sum', summaryRenderer: totalCount, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'saleQtyThree',\n" +
+        //        "            header: '近3日销量',\n" +
+        //        "            width: 120,\n" +
+        //        "            summaryType: 'sum',\n" +
+        //        "            summaryRenderer: totalCount,\n" +
+        //        "            align: 'center',\n" +
+        //        "            listeners: {\n" +
+        //        "                'headerclick': function (ct, column, e, t, eOpts) {\n" +
+        //        "                    flagKeep(ct.grid, ct, column);\n" +
+        //        "                }\n" +
+        //        "            }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'saleQtySeven',\n" +
+        //        "            header: '近7日销量',\n" +
+        //        "            width: 120,\n" +
+        //        "            summaryType: 'sum',\n" +
+        //        "            summaryRenderer: totalCount,\n" +
+        //        "            align: 'center',\n" +
+        //        "            listeners: {\n" +
+        //        "                'headerclick': function (ct, column, e, t, eOpts) {\n" +
+        //        "                    flagKeep(ct.grid, ct, column);\n" +
+        //        "                }\n" +
+        //        "            }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'saleQtyFifteen',\n" +
+        //        "            header: '近15日销量',\n" +
+        //        "            width: 120,\n" +
+        //        "            summaryType: 'sum',\n" +
+        //        "            summaryRenderer: totalCount,\n" +
+        //        "            align: 'center',\n" +
+        //        "            listeners: {\n" +
+        //        "                'headerclick': function (ct, column, e, t, eOpts) {\n" +
+        //        "                    flagKeep(ct.grid, ct, column);\n" +
+        //        "                }\n" +
+        //        "            }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'salableQty', header: '可销售数', width: 70,\n" +
+        //        "            summaryType: 'sum', summaryRenderer: totalCount, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'roadQty', header: '在途数', width: 70,\n" +
+        //        "            summaryType: 'sum', summaryRenderer: totalCount, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'unpaidQty', header: '未付款数', width: 70,\n" +
+        //        "            summaryType: 'sum', summaryRenderer: totalCount, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'safeQty', header: '安全库存', width: 70,\n" +
+        //        "            summaryType: 'sum', summaryRenderer: totalCount, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'pickQty', header: '可配数', width: 70,\n" +
+        //        "            summaryType: 'sum', summaryRenderer: totalCount, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'effectiveDate', header: '有效日期', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'shelfLife', header: '保质期', width: 100, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'productionDate', header: '生产日期', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "    <@shiro.hasPermission name=\"costprice:view\">\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'costPrice', header: '成本价', width: 70, xtype: 'numbercolumn',\n" +
+        //        "            format: '0.0000', summaryType: 'sum', summaryRenderer: totalCountFloat, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "    <@shiro.hasPermission name=\"actualprice:view\">\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'salesPrice', header: '销售价格', width: 70, xtype: 'numbercolumn',\n" +
+        //        "            format: '0.0000', summaryType: 'sum', summaryRenderer: totalCountFloat, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "    <@shiro.hasPermission name=\"costprice:view\">\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'costPriceCount', header: '成本总金额', width: 100, xtype: 'numbercolumn',\n" +
+        //        "            format: '0.0000', summaryType: 'sum', summaryRenderer: totalCountFloat, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "    <@shiro.hasPermission name=\"actualprice:view\">\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'salesPriceCount', header: '销售总金额', width: 100, xtype: 'numbercolumn',\n" +
+        //        "            format: '0.0000', summaryType: 'sum', summaryRenderer: totalCountFloat, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "    </@shiro.hasPermission>\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'itemNote', header: '商品备注', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'itemSkuNote', header: '规格备注', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'stockStatusName', header: '库存状态', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'supplierOuterId', header: '供应商货号', width: 120, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "        {\n" +
+        //        "            dataIndex: 'unit', header: '单位', width: 70, listeners: {\n" +
+        //        "            'headerClick': function (ct, column) {\n" +
+        //        "                flagKeep(ct.grid, ct, column);\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        },\n" +
+        //        "    ];\n" +
+        //        "\n" +
+        //        "    function totalCount(value, summaryData, dataIndex) {\n" +
+        //        "        return value;\n" +
+        //        "    }\n" +
+        //        "    //当页排序行号更新\n" +
+        //        "    function flagKeep(dataGrid, ct, column) {\n" +
+        //        "        /*搜索按钮恢复*/\n" +
+        //        "        var store = dataGrid.getStore();\n" +
+        //        "        var data = store.data.items;\n" +
+        //        "        var dataSort = ct.items.items;\n" +
+        //        "\n" +
+        //        "        for (var i = 0; i < dataSort.length; i++) {\n" +
+        //        "            var cln = dataSort[i];\n" +
+        //        "            var clnIdx = cln.dataIndex;\n" +
+        //        "            var currentIdx = column.dataIndex;\n" +
+        //        "            if (currentIdx != clnIdx) {\n" +
+        //        "                clnIdx = currentIdx;\n" +
+        //        "                if (cln.hasCls('x-column-header-sort-DESC')) {\n" +
+        //        "                    cln.removeCls(\"x-column-header-sort-DESC\");\n" +
+        //        "                }\n" +
+        //        "\n" +
+        //        "                if (cln.hasCls('x-column-header-sort-ASC')) {\n" +
+        //        "                    cln.removeCls(\"x-column-header-sort-ASC\");\n" +
+        //        "                }\n" +
+        //        "            }\n" +
+        //        "        }\n" +
+        //        "        //重新载入（解决静态排序导致行号从第一页开始）\n" +
+        //        "        store.loadData(data);\n" +
+        //        "        ///*订单标记载入*/\n" +
+        //        "        var currentPage = store.currentPage;\n" +
+        //        "        var pageSize = store.pageSize;\n" +
+        //        "        for (var i = data.length; i--;) {\n" +
+        //        "            var record = data[i];\n" +
+        //        "            //记录该行的序号（解决静态排序导致行号从第一页开始）\n" +
+        //        "            record.index = (currentPage - 1) * pageSize + (record.index);\n" +
+        //        "        }\n" +
+        //        "        //重新载入（解决静态排序导致行号从第一页开始）\n" +
+        //        "        store.loadData(data);\n" +
+        //        "\n" +
+        //        "    }\n" +
+        //        "    function totalCountFloat(value, summaryData, dataIndex) {\n" +
+        //        "        return value.toFixed(4);\n" +
+        //        "    }\n" +
+        //        "\n" +
+        //        "    if (top.window.location.hostname == \"localhost\" && !(/testmin/.test(top.window.location.href))) {\n" +
+        //        "        var dev = new Date().getTime();\n" +
+        //        "        seajs.config({\n" +
+        //        "            alias: {//别名配置\n" +
+        //        "                'ext': _SEACONFIG.ext,\n" +
+        //        "                'ext-lang': _SEACONFIG.extlang,\n" +
+        //        "                'jquery': _SEACONFIG.jquery,\n" +
+        //        "                'comboGrid': '/js/comm/comboGrid.js?' + dev,\n" +
+        //        "                'extFunc': '/js/comm/extFunc.js?' + dev,\n" +
+        //        "                'autoSelect': '/js/comm/plugin/autoSelect.js?' + dev,\n" +
+        //        "                'calendar': '/js/comm/plugin/calendar.js?' + dev,\n" +
+        //        "                'validateForm': '/js/comm/plugin/validateForm.js?' + dev,\n" +
+        //        "                'gyUi': '/js/comm/plugin/gyUi.js?' + dev,\n" +
+        //        "                'uniqueDetailWindow': '/js/comm/commwin/uniqueDetailWindow.js?' + dev,\n" +
+        //        "                'batchManagementDetailWindow': '/js/comm/commwin/batchManagementDetailWindow.js?' + dev,\n" +
+        //        "                'stockTenantController': '/js/stock/message/stockTenantController.js?' + dev,\n" +
+        //        "                'stockTenantModel': '/js/stock/message/stockTenantModel.js?' + dev,\n" +
+        //        "                'stockTenant': '/js/stock/message/stockTenant.js?' + dev,\n" +
+        //        "                'ajaxUpload': '/js/comm/plugin/ajaxfileupload.js?' + dev\n" +
+        //        "            },\n" +
+        //        "            base: '${ctx}'\n" +
+        //        "        })\n" +
+        //        "    } else {\n" +
+        //        "        seajs.config({\n" +
+        //        "            alias: {//别名配置\n" +
+        //        "                'ext': _SEACONFIG.ext,\n" +
+        //        "                'ext-lang': _SEACONFIG.extlang,\n" +
+        //        "                'jquery': _SEACONFIG.jquery,\n" +
+        //        "                'extFunc': _SEACONFIG.extFunc,\n" +
+        //        "                'gyUi': _SEACONFIG.gyUi,\n" +
+        //        "                'uniqueDetailWindow': _CDNPATH +'/static/js/dist/comm/uniqueDetailWindow.d268885e.js',\n" +
+        //        "                'batchManagementDetailWindow':_CDNPATH + '/static/js/dist/comm/batchManagementDetailWindow.17911a58.js',\n" +
+        //        "                'stockTenant': _CDNPATH + '/static/js/dist/stockTenant.f1cb03c8.js',\n" +
+        //        "                'ajaxUpload': _CDNPATH + '/static/js/dist/comm/ajaxfileupload.d0d67f08.js'\n" +
+        //        "            },\n" +
+        //        "            base: _CDNPATH\n" +
+        //        "        })\n" +
+        //        "    }\n" +
+        //        "    seajs.use('stockTenant');\n" +
+        //        "</script>\n" +
+        //        "</body>\n" +
+        //        "</html>";
         String fileStr = "<#assign ctx=\"${rc.contextPath}\">\n" +
                 "<#assign shiro=JspTaglibs[\"/WEB-INF/shiro.tld\"]>\n" +
                 "<html>\n" +
                 "<head>\n" +
-                "    <title>商品库存信息</title>\n" +
+                "    <title>德邦电子面单设置</title>\n" +
+                "    <script type=\"text/javascript\">\n" +
+                "        $(document).ready(function () {\n" +
+                "            $(\"#frmParam\").show();\n" +
+                "            $(\"#frmWlb\").hide();\n" +
+                "            $(\"#match\").hide();\n" +
+                "            $('#type').combobox({\n" +
+                "                onChange: function(newValue, oldValue){\n" +
+                "                    if(newValue=='2'){\n" +
+                "                        $(\"#match\").show();\n" +
+                "                        $(\"#frmParam\").hide();\n" +
+                "                        $(\"#frmWlb\").show();\n" +
+                "                    }else if(newValue=='1'){\n" +
+                "                        $(\"#frmParam\").show();\n" +
+                "                        $(\"#frmWlb\").hide();\n" +
+                "                        $(\"#match\").hide();\n" +
+                "                    }\n" +
+                "                }\n" +
+                "            });\n" +
+                "\n" +
+                "            var entity =${entity!'null'} ;\n" +
+                "            var configData =${data!'null'} ;\n" +
+                "            var type = '${type!}';\n" +
+                "            if (entity) {\n" +
+                "                if (entity.shopIds == null || entity.shopIds == \"\") {\n" +
+                "                    entity.shopIds = [];\n" +
+                "                }\n" +
+                "                if(entity.type=='2'){\n" +
+                "                    entity.shopId=configData.shopId;\n" +
+                "                    entity.productName=configData.productName;\n" +
+                "                    if (entity.shopIds && entity.shopIds.length) {\n" +
+                "                        entity.shopIds = JSON.parse(entity.shopIds);\n" +
+                "                    }\n" +
+                "                    $(\"#frmParam\").hide();\n" +
+                "                    $(\"#match\").show();\n" +
+                "                    $(\"#frmWlb\").show();\n" +
+                "                    $(\"#frmWlb\").form(\"load\", entity);\n" +
+                "                    $('#type').combobox({\n" +
+                "                        onLoadSuccess:function(){\n" +
+                "                            $('#type').combobox('select','2');\n" +
+                "                        }\n" +
+                "                    });\n" +
+                "                }else if(entity.type=='1'){\n" +
+                "                    entity.transportType=configData.transportType;\n" +
+                "                    entity.customerId = configData.customerId;\n" +
+                "                    entity.customerCode = configData.customerCode;\n" +
+                "                    $(\"#frmParam\").show();\n" +
+                "                    $(\"#match\").hide();\n" +
+                "                    $(\"#frmWlb\").hide();\n" +
+                "                    $(\"#frmParam\").form(\"load\", entity);\n" +
+                "                    $('#type').combobox({\n" +
+                "                        onLoadSuccess:function(){\n" +
+                "                            $('#type').combobox('select','1');\n" +
+                "                        }\n" +
+                "                    });\n" +
+                "                }\n" +
+                "                $('#frmEdit').form('clear');\n" +
+                "                $(\"#frmEdit\").form(\"load\", entity);\n" +
+                "            }\n" +
+                "            if (type == \"edit\") {\n" +
+                "                $(\"#frmEdit\").attr(\"action\", \"${ctx}/info/order/thermal_config/data/update\")\n" +
+                "            }\n" +
+                "            else {\n" +
+                "                $(\"#frmEdit\").attr(\"action\", \"${ctx}/info/order/thermal_config/data/create\")\n" +
+                "            }\n" +
+                "        });\n" +
+                "        function save() {\n" +
+                "            if ($(\"#frmEdit\").form(\"validate\")) {\n" +
+                "               // var requestObject = $(\"#frmEdit\").serializeObject();\n" +
+                "                var data = $(\"#frmEdit\").serializeObject();\n" +
+                "                var requestObject = new Object();\n" +
+                "                requestObject.id = data.id;\n" +
+                "                requestObject.type = data.type;\n" +
+                "                requestObject.expressId = data.expressId;\n" +
+                "                requestObject.warehouseId = data.warehouseId;\n" +
+                "                requestObject.customerCode = data.clientId;\n" +
+                "                if(data.type=='1'){\n" +
+                "                    if($(\"#frmParam\").form(\"validate\")){\n" +
+                "                        var configData = $(\"#frmParam\").serializeObject();\n" +
+                "                      //  requestObject.data = JSON.stringify(configData);\n" +
+                "                        requestObject.data = JSON.stringify(configData);\n" +
+                "                    }else{\n" +
+                "                        return false;\n" +
+                "                    }\n" +
+                "                }else{\n" +
+                "                    if (data.shopIds != null && data.shopIds != \"\") {\n" +
+                "                        if (data.shopIds.constructor == Array) {\n" +
+                "                            requestObject.shopIds = JSON.stringify(data.shopIds);\n" +
+                "                        }\n" +
+                "                        else {\n" +
+                "                            requestObject.shopIds = \"[\" + data.shopIds + \"]\";\n" +
+                "                        }\n" +
+                "                    }\n" +
+                "                    else {\n" +
+                "                        requestObject.shopIds = \"\";\n" +
+                "                    }\n" +
+                "                    if($(\"#frmWlb\").form(\"validate\")){\n" +
+                "                        var configData = $(\"#frmWlb\").serializeObject();\n" +
+                "                        requestObject.data = JSON.stringify(configData);\n" +
+                "                    }else{\n" +
+                "                        return false;\n" +
+                "                    }\n" +
+                "                }\n" +
+                "                var url = $(\"#frmEdit\").attr(\"action\");\n" +
+                "                console.log(JSON.stringify(requestObject));\n" +
+                "                $.ajax({\n" +
+                "                            type: \"POST\",\n" +
+                "                            url: url,\n" +
+                "                            data: JSON.stringify(requestObject),\n" +
+                "                            dataType: 'text',\n" +
+                "                            processData: false,\n" +
+                "                            contentType: 'application/json',\n" +
+                "                            success: function (msg) {\n" +
+                "                                successMsg(msg);\n" +
+                "                                if (msg == '保存成功') {\n" +
+                "                                    window.location.href = \"${ctx}/info/order/thermal_config?pageNumber=${pageNumber!}&pageSize=${pageSize!}\";\n" +
+                "                                }\n" +
+                "                            }\n" +
+                "                        }\n" +
+                "                );\n" +
+                "            }\n" +
+                "            else {\n" +
+                "                $.messager.alert(\"提示\", \"请输入所有必选项\", \"warning\")\n" +
+                "            }\n" +
+                "        }\n" +
+                "        function cancel() {\n" +
+                "            window.location.href = \"${ctx}/info/order/thermal_config?pageNumber=${pageNumber!}&pageSize=${pageSize!}\";\n" +
+                "        }\n" +
+                "        function cleanShopIds() {\n" +
+                "            $(\"#shopIds\").combobox(\"clear\");\n" +
+                "        }\n" +
+                "\n" +
+                "    </script>\n" +
                 "</head>\n" +
                 "<body>\n" +
-                "<div class=\"breadcrumb\">库存中心 > 库存信息 > 商品库存信息</div>\n" +
-                "<div class=\"hidden\">\n" +
-                "    <form id=\"frmItemSearch\" class=\"reset-box form-inline form-default-col cf\" method=\"post\">\n" +
-                "        <div class=\"form-item fi-block\">\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <input id=\"searchBtn\" class=\"btn btn-primary\" type=\"button\" value=\"搜索\"/>\n" +
-                "                <input id=\"resetBtn\" class=\"btn\" type=\"reset\" value=\"重置条件\"/>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">商品代码</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <input type=\"text\" id=\"code\" class=\"text\" name=\"code\"/>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">规格代码</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <input type=\"text\" id=\"skuCode\" class=\"text\" name=\"skuCode\"/>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">规格名称</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <input class=\"text\" type=\"text\" id=\"skuName\" name=\"skuName\"/>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">商品条码</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <input type=\"text\" id=\"barCode\" class=\"text\" name=\"barCode\"/>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">商品简称</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <input type=\"text\" id=\"sName\" class=\"text\" name=\"sName\"/>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">商品名称</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <input type=\"text\" id=\"name\" class=\"text\" name=\"name\"/>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">仓库名称</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <input type=\"text\" id=\"warehouseId\" class=\"text\" name=\"warehouseId\"/>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">商品类别</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <div id=\"categoryId\" class=\"ext-combotree\"></div>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\"></div>\n" +
-                "        <div class=\"form-item\"></div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">供应商</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <input type=\"text\" id=\"supplierId\" class=\"text\" name=\"supplierId\"/>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-field qty-type\">\n" +
-                "                <select name=\"qtyType\">\n" +
-                "                    <option value=\"1\">库存数量</option>\n" +
-                "                    <option value=\"2\">可销售数</option>\n" +
-                "                    <option value=\"3\">可配数量</option>\n" +
-                "                    <option value=\"4\">在途数量</option>\n" +
-                "                    <option value=\"5\">安全库存</option>\n" +
-                "                </select>\n" +
-                "\n" +
-                "                <div class=\"input-combo\">\n" +
-                "                    <input type=\"text\" class=\"text input-small\" name=\"qtyMin\"/>\n" +
-                "                    <span class=\"combo-split\">-</span>\n" +
-                "                    <input type=\"text\" class=\"text input-small\" name=\"qtyMax\"/>\n" +
+                "<#--<div class=\"breadcrumb\">基础管理 > 订单管理 > 电子面单设置 > 新增/编辑</div>-->\n" +
+                "<#--<input type=\"hidden\" id=\"typeMsg\"/>-->\n" +
+                "    <#--<div class=\"toolbar\">-->\n" +
+                "        <#--<input type=\"button\" class=\"btn btn-primary\"onclick=\"save()\" value=\"保存\">-->\n" +
+                "        <#--<input type=\"button\" class=\"btn\" onclick=\"cancel()\" value=\"取消\">-->\n" +
+                "    <#--</div>-->\n" +
+                "    <div class=\"form-horizontal form-col-4 form-lab7\">\n" +
+                "        <#--<form action=\"${ctx}/info/order/thermal_config/data/create\" method=\"post\" id=\"frmEdit\" class=\"cf\">\n" +
+                "        <input type=\"hidden\" name=\"id\" value=\"0\"/>\n" +
+                "        <fieldset class=\"dg-fieldset\">\n" +
+                "            <legend>基本配置</legend>\n" +
+                "            <div class=\"form-item\">\n" +
+                "                <div class=\"form-lab\">对接快递：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input class=\"easyui-combobox combo-w\"\n" +
+                "                           data-options=\"valueField:'id',textField:'name',\n" +
+                "                               editable:false,disabled:true,required:true,url:'${ctx}/admin/sys_express/data/thermal_all'\"\n" +
+                "                           name=\"expressId\" id=\"expressId\"/>\n" +
                 "                </div>\n" +
                 "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div id=\"chkStatus\" class=\"form-field\">\n" +
-                "                <label class=\"checkbox\"><input type=\"checkbox\" sign=\"disable\" data-type='0'/>停用</label>\n" +
-                "                <label class=\"checkbox\"><input type=\"checkbox\" sign=\"aew\"/>库存预警</label>\n" +
+                "            <div class=\"form-item\">\n" +
+                "                <div class=\"form-lab\">对接仓库：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input class=\"easyui-combobox combo-w\"\n" +
+                "                           data-options=\"valueField:'id',textField:'name',\n" +
+                "                                   required:true,editable :false,\n" +
+                "                                   url:'${ctx}/info/warehouse/data/all'\"\n" +
+                "                           type=\"text\" name=\"warehouseId\" id=\"warehouseId\"/>\n" +
+                "                </div>\n" +
                 "            </div>\n" +
-                "        </div>\n" +
-                "    </form>\n" +
-                "</div>\n" +
-                "\n" +
-                "<div class=\"hidden\">\n" +
-                "    <!-- 主表格 - 按钮工具栏 -->\n" +
-                "    <div id=\"tbStockToolBar\" class=\"tbar\">\n" +
-                "    <@shiro.hasPermission name=\"enable:/stock/message/stock_tenant\">\n" +
-                "        <a href=\"javascript:;\" id=\"batchEnableBtn\" class=\"gy-l-btn\">\n" +
-                "            <i class=\"new-icon-enable\"></i><span class=\"gy-l-btn-text\">批量启用</span>\n" +
-                "        </a>\n" +
-                "    </@shiro.hasPermission>\n" +
-                "    <@shiro.lacksPermission name=\"enable:/stock/message/stock_tenant\">\n" +
-                "        <a href=\"javascript:;\" class=\"gy-l-btn disabled\">\n" +
-                "            <i class=\"new-icon-enable\"></i><span class=\"gy-l-btn-text\">批量启用</span>\n" +
-                "        </a>\n" +
-                "    </@shiro.lacksPermission>\n" +
-                "\n" +
-                "    <@shiro.hasPermission name=\"delete:/stock/message/stock_tenant\">\n" +
-                "        <a href=\"javascript:;\" id=\"batchStopBtn\" class=\"gy-l-btn\">\n" +
-                "            <i class=\"new-icon-stop\"></i><span class=\"gy-l-btn-text\">批量停用</span>\n" +
-                "        </a>\n" +
-                "    </@shiro.hasPermission>\n" +
-                "    <@shiro.lacksPermission name=\"delete:/stock/message/stock_tenant\">\n" +
-                "        <a href=\"javascript:;\" class=\"gy-l-btn disabled\">\n" +
-                "            <i class=\"new-icon-stop\"></i><span class=\"gy-l-btn-text\">批量停用</span>\n" +
-                "        </a>\n" +
-                "    </@shiro.lacksPermission>\n" +
-                "\n" +
-                "    <@shiro.hasPermission name=\"calc:/stock/message/stock_tenant\">\n" +
-                "        <a href=\"javascript:;\" id=\"calStockBtn\" class=\"gy-l-btn\">\n" +
-                "            <i class=\"new-icon-init\"></i><span class=\"gy-l-btn-text\">重新计算安全库存</span>\n" +
-                "        </a>\n" +
-                "    </@shiro.hasPermission>\n" +
-                "    <@shiro.lacksPermission name=\"calc:/stock/message/stock_tenant\">\n" +
-                "        <a href=\"javascript:;\" class=\"gy-l-btn disabled\">\n" +
-                "            <i class=\"new-icon-init\"></i><span class=\"gy-l-btn-text\">重新计算安全库存</span>\n" +
-                "        </a>\n" +
-                "    </@shiro.lacksPermission>\n" +
-                "\n" +
-                "    <@shiro.hasPermission name=\"export:/stock/message/stock_tenant\">\n" +
-                "        <a href=\"javascript:;\" id=\"exportItemBtn\" class=\"gy-l-btn\">\n" +
-                "            <i class=\"new-icon-export\"></i><span class=\"gy-l-btn-text\">商品库存导出CSV</span>\n" +
-                "        </a>\n" +
-                "    </@shiro.hasPermission>\n" +
-                "    <@shiro.lacksPermission name=\"export:/stock/message/stock_tenant\">\n" +
-                "        <a href=\"javascript:;\" class=\"gy-l-btn disabled\">\n" +
-                "            <i class=\"new-icon-export\"></i><span class=\"gy-l-btn-text\">商品库存导出CSV</span>\n" +
-                "        </a>\n" +
-                "    </@shiro.lacksPermission>\n" +
-                "\n" +
-                "    <@shiro.hasPermission name=\"update:/stock/message/stock_tenant\">\n" +
-                "        <a href=\"javascript:;\" id=\"updateSafeQty\" class=\"gy-l-btn\">\n" +
-                "            <i class=\"new-icon-settings\"></i><span class=\"gy-l-btn-text\">设置安全库存</span>\n" +
-                "        </a>\n" +
-                "        <a href=\"javascript:;\" id=\"\" class=\"gy-l-btn gy-split-btn\" data-menu=\"mmSettings\">\n" +
-                "            <i class=\"new-icon-import\"></i><span class=\"gy-l-btn-text\">安全库存导入</span>\n" +
-                "            <span class=\"gy-l-btn-line\"><b class=\"caret caret-b\"></b></span>\n" +
-                "        </a>\n" +
-                "    </@shiro.hasPermission>\n" +
-                "    <@shiro.lacksPermission name=\"update:/stock/message/stock_tenant\">\n" +
-                "        <a href=\"javascript:;\" class=\"gy-l-btn disabled\">\n" +
-                "            <i class=\"new-icon-settings\"></i><span class=\"gy-l-btn-text\">设置安全库存</span>\n" +
-                "        </a>\n" +
-                "        <a href=\"javascript:;\" class=\"gy-l-btn gy-split-btn disabled\">\n" +
-                "            <i class=\"new-icon-import\"></i><span class=\"gy-l-btn-text\">安全库存导入</span>\n" +
-                "            <span class=\"gy-l-btn-line\"><b class=\"caret caret-b\"></b></span>\n" +
-                "        </a>\n" +
-                "    </@shiro.lacksPermission>\n" +
-                "\n" +
-                "    <@shiro.hasPermission name=\"template:/stock/message/stock_tenant\">\n" +
-                "        <a href=\"javascript:;\" id=\"tplDownloadBtn\" class=\"gy-l-btn gy-split-btn\" data-menu=\"mmDownload\">\n" +
-                "            <i class=\"new-icon-download\"></i><span class=\"gy-l-btn-text\">安全库存导入模版下载</span>\n" +
-                "            <span class=\"gy-l-btn-line\"><b class=\"caret caret-b\"></b></span>\n" +
-                "        </a>\n" +
-                "    </@shiro.hasPermission>\n" +
-                "    <@shiro.lacksPermission name=\"template:/stock/message/stock_tenant\">\n" +
-                "        <a href=\"javascript:;\" class=\"gy-l-btn disabled\">\n" +
-                "            <i class=\"new-icon-download\"></i><span class=\"gy-l-btn-text\">安全库存导入模版下载</span>\n" +
-                "        </a>\n" +
-                "    </@shiro.lacksPermission>\n" +
-                "        <a id=\"resetLayoutBtn\" class=\"gy-l-btn\" href=\"javascript:;\">\n" +
-                "            <i class=\"new-icon-layout\"></i><span class=\"gy-l-btn-text\">恢复布局</span>\n" +
-                "        </a>\n" +
-                "\n" +
-                "        <!-- 库存数量汇总 -->\n" +
-                "        <div class=\"counter-bar cf\">\n" +
-                "            <div class=\"counter-lab\">库存汇总</div>\n" +
-                "            <div class=\"counter-item\">\n" +
-                "                <span>库存总数：</span>\n" +
-                "                <span id=\"qtyCount\" class=\"color3\">0</span>\n" +
-                "                <span id=\"refreshStockBtn\" class=\"icon-refresh-1\"></span>\n" +
+                "            <div class=\"form-item\">\n" +
+                "                <div class=\"form-lab\">对接类型：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input class=\"easyui-combobox combo-w\"\n" +
+                "                           data-options=\"valueField:'value',textField:'text',\n" +
+                "                                       required:true,editable:false,url:'${ctx}/info/order/thermal_config/data/type'\"\n" +
+                "                           type=\"text\" name=\"type\" id=\"type\"/>\n" +
+                "                </div>\n" +
                 "            </div>\n" +
-                "        <#--<div class=\"counter-item\">\n" +
-                "            <span>成本总金额：</span>\n" +
-                "            <span id=\"costPriceCount\">0</span>\n" +
-                "        </div>\n" +
-                "        <div class=\"counter-item\">\n" +
-                "            <span>销售总金额：</span>\n" +
-                "            <span id=\"salesPriceCount\">0</span>\n" +
-                "        </div>-->\n" +
-                "        </div>\n" +
-                "    </div> <!-- end #tbStockToolBar -->\n" +
-                "\n" +
-                "    <!-- 设置安全库存 - 弹出框表单 -->\n" +
-                "    <form id=\"setSaveStockForm\" class=\"form-vertical reset-box\" method=\"post\">\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">请输入安全库存数：</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <input type=\"text\" id=\"saveStockNum\" class=\"text\"/>\n" +
-                "\n" +
-                "                <p id=\"saveStockNumTips\" class=\"form-tips must\"></p>\n" +
+                "            <div class=\"form-item\" id=\"match\">\n" +
+                "                <div class=\"form-lab\">匹配店铺：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <input id=\"shopIds\" name=\"shopIds\" class=\"easyui-combobox combo-w\"\n" +
+                "                           data-options=\"valueField:'id',textField:'name',\n" +
+                "\t\t\t\t\tmultiple:true,editable :false,url:'${ctx}/info/shop/data/all'\"/>\n" +
+                "                    <input class=\"btn\" type=\"button\" onclick=\"cleanShopIds()\" value=\"重置\" style=\"vertical-align: middle\"/>\n" +
+                "                    <p class=\"form-tips\"><label style=\"color: red\">不选表示全部店铺匹配</label></p>\n" +
+                "                </div>\n" +
                 "            </div>\n" +
-                "        </div>\n" +
-                "    </form>\n" +
-                "    <!-- 重新计算安全库存 - 弹出框表单 -->\n" +
-                "    <form id=\"frmStockCalc\" class=\"form-horizontal\" action=\"${ctx}/stock/message/stock_tenant/stockCalc\" method=\"post\">\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">选择仓库</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <span class=\"must\">*</span>\n" +
-                "                <input type=\"text\" class=\"text\" id=\"winWarehouseId\"/>\n" +
+                "        </fieldset>\n" +
+                "        </form>-->\n" +
+                "        <form id=\"frmParam\" class=\"cf\">\n" +
+                "        <fieldset class=\"dg-fieldset\">\n" +
+                "            <legend>接口设置</legend>\n" +
+                "            <div class=\"form-item\">\n" +
+                "                <div class=\"form-lab\">商家ID：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input name=\"customerId\" id=\"customerId\" type=\"text\" class=\"easyui-validatebox text\" style=\"width: 200\" data-options=\"required:true\" >\n" +
+                "                </div>\n" +
                 "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">日销量</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <select name=\"day\">\n" +
-                "                    <option value=\"3\">最近3天日销量</option>\n" +
-                "                    <option value=\"7\">最近7天日销量</option>\n" +
-                "                    <option value=\"15\">最近15天日销量</option>\n" +
-                "                </select>\n" +
+                "            <div class=\"form-item\">\n" +
+                "                <div class=\"form-lab\">商家代码：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input name=\"customerCode\" id=\"customerCode\" type=\"text\" class=\"easyui-validatebox  text\" data-options=\"required:true\"/>\n" +
+                "                </div>\n" +
                 "            </div>\n" +
-                "        </div>\n" +
-                "        <div class=\"form-item\">\n" +
-                "            <div class=\"form-lab\">微调比例</div>\n" +
-                "            <div class=\"form-field\">\n" +
-                "                <input name=\"ratio\" type=\"text\" class=\"text\" value=\"100\"> %\n" +
+                "            <div class=\"form-item\">\n" +
+                "                <div class=\"form-lab\">运输方式：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input class=\"easyui-combobox combo-w\"\n" +
+                "                           data-options=\"valueField:'id',textField:'name',\n" +
+                "                               data: [{\n" +
+                "                                        name: '标准快递',\n" +
+                "                                        id: 'PACKAGE'\n" +
+                "                                    },{\n" +
+                "                                        name: '360特惠件',\n" +
+                "                                        id: 'RCP'\n" +
+                "                                    },{\n" +
+                "                                        name: '电商尊享',\n" +
+                "                                        id: 'EPEP'\n" +
+                "                                    }]\"\n" +
+                "                           name=\"transportType\" id=\"transportType\"/>\n" +
+                "                </div>\n" +
                 "            </div>\n" +
-                "        </div>\n" +
-                "    </form>\n" +
-                "</div>\n" +
-                "\n" +
-                "<!-- 安全库存导出 - 下拉菜单 -->\n" +
-                "<div id=\"mmSettings\" class=\"gy-menu hidden\">\n" +
-                "    <div class=\"gy-menu-item\" id=\"importDataItem\">\n" +
-                "        <span class=\"menu-text\">商品导入安全库存</span>\n" +
+                "        </fieldset>\n" +
+                "        </form>\n" +
+                "        <#--<form id=\"frmWlb\" class=\"form-lab7 cf\">\n" +
+                "            <fieldset class=\"dg-fieldset\">\n" +
+                "                <legend>接口设置</legend>\n" +
+                "                <div class=\"form-lab\">云栈淘宝店铺：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input class=\"easyui-combobox combo-w\"\n" +
+                "                           data-options=\"valueField:'id',textField:'name',\n" +
+                "                                       required:true,editable :false,url:'${ctx}/info/shop/taobao/data/list'\"\n" +
+                "                           type=\"text\" name=\"shopId\" id=\"shopId\"/>\n" +
+                "                </div>\n" +
+                "                <div class=\"form-item\">\n" +
+                "                    <div class=\"form-lab\">商品类别：</div>\n" +
+                "                    <div class=\"form-field\">\n" +
+                "                        <span class=\"must\">*</span>\n" +
+                "                        <input name=\"productName\" type=\"text\"\n" +
+                "                               class=\"easyui-validatebox  text\" data-options=\"required:true\"/>\n" +
+                "                    </div>\n" +
+                "                </div>\n" +
+                "            </fieldset>\n" +
+                "        </form>-->\n" +
                 "    </div>\n" +
-                "    <div class=\"gy-menu-item\" id=\"importDataBarCode\">\n" +
-                "        <span class=\"menu-text\">条码导入安全库存</span>\n" +
-                "    </div>\n" +
-                "</div>\n" +
-                "\n" +
-                "<!-- 安全库存导入模板下载 - 下拉菜单 -->\n" +
-                "<div id=\"mmDownload\" class=\"gy-menu hidden\">\n" +
-                "    <div class=\"gy-menu-item\" id=\"itemTemplateDownload\">\n" +
-                "        <span class=\"menu-text\">商品导入安全模板下载</span>\n" +
-                "    </div>\n" +
-                "    <div class=\"gy-menu-item\" id=\"barCodeTemplateDownload\">\n" +
-                "        <span class=\"menu-text\">条码导入安全模板下载</span>\n" +
-                "    </div>\n" +
-                "</div>\n" +
-                "\n" +
-                "<!-- 安全库存导入表单 -->\n" +
-                "<form id=\"importForm\" class=\"hidden\" method=\"post\" enctype=\"multipart/form-data\">\n" +
-                "    <input type=\"file\" id=\"file\" name=\"file\"/>\n" +
-                "</form>\n" +
-                "\n" +
-                "<script>\n" +
-                "    var GLB = {\n" +
-                "        pageNumber: '${pageNumber!}',\n" +
-                "        pageSize: '${pageSize!}',\n" +
-                "        userId: '${user.id}',\n" +
-                "        unique: '<@shiro.hasPermission name=\"systemallstartuniquecode:view\">1</@shiro.hasPermission>',\n" +
-                "        batch: '<@shiro.hasPermission name=\"SystemBatchManage:view\">1</@shiro.hasPermission>',\n" +
-                "        postSort: ''\n" +
-                "    };\n" +
-                "    var mainColumns = [\n" +
-                "        {xtype: \"rownumberer\", resizable: true},\n" +
-                "        {dataIndex: 'del', header: '停用', width: 55, align: 'center'},\n" +
-                "    <@shiro.hasPermission name=\"systemallstartuniquecode:view\">\n" +
-                "        {dataIndex: 'unique', header: '唯一码', width: 55, align: 'center'},\n" +
-                "    </@shiro.hasPermission>\n" +
-                "        {dataIndex: 'picUrl', header: '图片', width: 90, align: 'center'},\n" +
-                "        {dataIndex: 'skuPicUrl', header: '规格图片', width: 90, align: 'center'},\n" +
-                "    <@shiro.hasPermission name=\"systemallstartuniquecode:view\">\n" +
-                "        {\n" +
-                "            dataIndex: 'id', header: '唯一码信息', width: 80,\n" +
-                "            renderer: function (v, record, idx) {\n" +
-                "                return \"<a href='javascript:void(0);'>唯一码信息</a>\";\n" +
-                "            }\n" +
-                "        },\n" +
-                "    </@shiro.hasPermission>\n" +
-                "    <@shiro.hasPermission name=\"SystemBatchManage:view\">\n" +
-                "        {dataIndex: 'batchManagement', header: '批次', width: 60},\n" +
-                "        {\n" +
-                "            dataIndex: 'id', header: '批次信息', width: 80,\n" +
-                "            renderer: function (v, record, idx) {\n" +
-                "                return \"<a href='javascript:void(0);'>批次信息</a>\";\n" +
-                "            }\n" +
-                "        },\n" +
-                "    </@shiro.hasPermission>\n" +
-                "        {\n" +
-                "            dataIndex: 'code', header: '商品代码', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'itemName', header: '商品名称', width: 160, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'categoryName', header: '商品类别', width: 160, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'skuCode', header: '商品规格代码', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'itemSkuName', header: '商品规格名称', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'itemBarcode', header: '商品条码', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'itemSimpleName', header: '商品简称', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'supplierName', header: '供应商', width: 100, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'warehouseName', header: '仓库', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'itemUnitName', header: '单位', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'locName', header: '库位', width: 90, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'qty', header: '库存数量', width: 70, align: 'center',\n" +
-                "            summaryType: 'sum', summaryRenderer: totalCount, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'saleQtyThree',\n" +
-                "            header: '近3日销量',\n" +
-                "            width: 120,\n" +
-                "            summaryType: 'sum',\n" +
-                "            summaryRenderer: totalCount,\n" +
-                "            align: 'center',\n" +
-                "            listeners: {\n" +
-                "                'headerclick': function (ct, column, e, t, eOpts) {\n" +
-                "                    flagKeep(ct.grid, ct, column);\n" +
-                "                }\n" +
-                "            }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'saleQtySeven',\n" +
-                "            header: '近7日销量',\n" +
-                "            width: 120,\n" +
-                "            summaryType: 'sum',\n" +
-                "            summaryRenderer: totalCount,\n" +
-                "            align: 'center',\n" +
-                "            listeners: {\n" +
-                "                'headerclick': function (ct, column, e, t, eOpts) {\n" +
-                "                    flagKeep(ct.grid, ct, column);\n" +
-                "                }\n" +
-                "            }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'saleQtyFifteen',\n" +
-                "            header: '近15日销量',\n" +
-                "            width: 120,\n" +
-                "            summaryType: 'sum',\n" +
-                "            summaryRenderer: totalCount,\n" +
-                "            align: 'center',\n" +
-                "            listeners: {\n" +
-                "                'headerclick': function (ct, column, e, t, eOpts) {\n" +
-                "                    flagKeep(ct.grid, ct, column);\n" +
-                "                }\n" +
-                "            }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'salableQty', header: '可销售数', width: 70,\n" +
-                "            summaryType: 'sum', summaryRenderer: totalCount, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'roadQty', header: '在途数', width: 70,\n" +
-                "            summaryType: 'sum', summaryRenderer: totalCount, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'unpaidQty', header: '未付款数', width: 70,\n" +
-                "            summaryType: 'sum', summaryRenderer: totalCount, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'safeQty', header: '安全库存', width: 70,\n" +
-                "            summaryType: 'sum', summaryRenderer: totalCount, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'pickQty', header: '可配数', width: 70,\n" +
-                "            summaryType: 'sum', summaryRenderer: totalCount, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'effectiveDate', header: '有效日期', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'shelfLife', header: '保质期', width: 100, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'productionDate', header: '生产日期', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "    <@shiro.hasPermission name=\"costprice:view\">\n" +
-                "        {\n" +
-                "            dataIndex: 'costPrice', header: '成本价', width: 70, xtype: 'numbercolumn',\n" +
-                "            format: '0.0000', summaryType: 'sum', summaryRenderer: totalCountFloat, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "    </@shiro.hasPermission>\n" +
-                "    <@shiro.hasPermission name=\"actualprice:view\">\n" +
-                "        {\n" +
-                "            dataIndex: 'salesPrice', header: '销售价格', width: 70, xtype: 'numbercolumn',\n" +
-                "            format: '0.0000', summaryType: 'sum', summaryRenderer: totalCountFloat, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "    </@shiro.hasPermission>\n" +
-                "    <@shiro.hasPermission name=\"costprice:view\">\n" +
-                "        {\n" +
-                "            dataIndex: 'costPriceCount', header: '成本总金额', width: 100, xtype: 'numbercolumn',\n" +
-                "            format: '0.0000', summaryType: 'sum', summaryRenderer: totalCountFloat, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "    </@shiro.hasPermission>\n" +
-                "    <@shiro.hasPermission name=\"actualprice:view\">\n" +
-                "        {\n" +
-                "            dataIndex: 'salesPriceCount', header: '销售总金额', width: 100, xtype: 'numbercolumn',\n" +
-                "            format: '0.0000', summaryType: 'sum', summaryRenderer: totalCountFloat, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "    </@shiro.hasPermission>\n" +
-                "        {\n" +
-                "            dataIndex: 'itemNote', header: '商品备注', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'itemSkuNote', header: '规格备注', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'stockStatusName', header: '库存状态', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'supplierOuterId', header: '供应商货号', width: 120, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            dataIndex: 'unit', header: '单位', width: 70, listeners: {\n" +
-                "            'headerClick': function (ct, column) {\n" +
-                "                flagKeep(ct.grid, ct, column);\n" +
-                "            }\n" +
-                "        }\n" +
-                "        },\n" +
-                "    ];\n" +
-                "\n" +
-                "    function totalCount(value, summaryData, dataIndex) {\n" +
-                "        return value;\n" +
-                "    }\n" +
-                "    //当页排序行号更新\n" +
-                "    function flagKeep(dataGrid, ct, column) {\n" +
-                "        /*搜索按钮恢复*/\n" +
-                "        var store = dataGrid.getStore();\n" +
-                "        var data = store.data.items;\n" +
-                "        var dataSort = ct.items.items;\n" +
-                "\n" +
-                "        for (var i = 0; i < dataSort.length; i++) {\n" +
-                "            var cln = dataSort[i];\n" +
-                "            var clnIdx = cln.dataIndex;\n" +
-                "            var currentIdx = column.dataIndex;\n" +
-                "            if (currentIdx != clnIdx) {\n" +
-                "                clnIdx = currentIdx;\n" +
-                "                if (cln.hasCls('x-column-header-sort-DESC')) {\n" +
-                "                    cln.removeCls(\"x-column-header-sort-DESC\");\n" +
-                "                }\n" +
-                "\n" +
-                "                if (cln.hasCls('x-column-header-sort-ASC')) {\n" +
-                "                    cln.removeCls(\"x-column-header-sort-ASC\");\n" +
-                "                }\n" +
-                "            }\n" +
-                "        }\n" +
-                "        //重新载入（解决静态排序导致行号从第一页开始）\n" +
-                "        store.loadData(data);\n" +
-                "        ///*订单标记载入*/\n" +
-                "        var currentPage = store.currentPage;\n" +
-                "        var pageSize = store.pageSize;\n" +
-                "        for (var i = data.length; i--;) {\n" +
-                "            var record = data[i];\n" +
-                "            //记录该行的序号（解决静态排序导致行号从第一页开始）\n" +
-                "            record.index = (currentPage - 1) * pageSize + (record.index);\n" +
-                "        }\n" +
-                "        //重新载入（解决静态排序导致行号从第一页开始）\n" +
-                "        store.loadData(data);\n" +
-                "\n" +
-                "    }\n" +
-                "    function totalCountFloat(value, summaryData, dataIndex) {\n" +
-                "        return value.toFixed(4);\n" +
-                "    }\n" +
-                "\n" +
-                "    if (top.window.location.hostname == \"localhost\" && !(/testmin/.test(top.window.location.href))) {\n" +
-                "        var dev = new Date().getTime();\n" +
-                "        seajs.config({\n" +
-                "            alias: {//别名配置\n" +
-                "                'ext': _SEACONFIG.ext,\n" +
-                "                'ext-lang': _SEACONFIG.extlang,\n" +
-                "                'jquery': _SEACONFIG.jquery,\n" +
-                "                'comboGrid': '/js/comm/comboGrid.js?' + dev,\n" +
-                "                'extFunc': '/js/comm/extFunc.js?' + dev,\n" +
-                "                'autoSelect': '/js/comm/plugin/autoSelect.js?' + dev,\n" +
-                "                'calendar': '/js/comm/plugin/calendar.js?' + dev,\n" +
-                "                'validateForm': '/js/comm/plugin/validateForm.js?' + dev,\n" +
-                "                'gyUi': '/js/comm/plugin/gyUi.js?' + dev,\n" +
-                "                'uniqueDetailWindow': '/js/comm/commwin/uniqueDetailWindow.js?' + dev,\n" +
-                "                'batchManagementDetailWindow': '/js/comm/commwin/batchManagementDetailWindow.js?' + dev,\n" +
-                "                'stockTenantController': '/js/stock/message/stockTenantController.js?' + dev,\n" +
-                "                'stockTenantModel': '/js/stock/message/stockTenantModel.js?' + dev,\n" +
-                "                'stockTenant': '/js/stock/message/stockTenant.js?' + dev,\n" +
-                "                'ajaxUpload': '/js/comm/plugin/ajaxfileupload.js?' + dev\n" +
-                "            },\n" +
-                "            base: '${ctx}'\n" +
-                "        })\n" +
-                "    } else {\n" +
-                "        seajs.config({\n" +
-                "            alias: {//别名配置\n" +
-                "                'ext': _SEACONFIG.ext,\n" +
-                "                'ext-lang': _SEACONFIG.extlang,\n" +
-                "                'jquery': _SEACONFIG.jquery,\n" +
-                "                'extFunc': _SEACONFIG.extFunc,\n" +
-                "                'gyUi': _SEACONFIG.gyUi,\n" +
-                "                'uniqueDetailWindow': _CDNPATH +'/static/js/dist/comm/uniqueDetailWindow.d268885e.js',\n" +
-                "                'batchManagementDetailWindow':_CDNPATH + '/static/js/dist/comm/batchManagementDetailWindow.17911a58.js',\n" +
-                "                'stockTenant': _CDNPATH + '/static/js/dist/stockTenant.f1cb03c8.js',\n" +
-                "                'ajaxUpload': _CDNPATH + '/static/js/dist/comm/ajaxfileupload.d0d67f08.js'\n" +
-                "            },\n" +
-                "            base: _CDNPATH\n" +
-                "        })\n" +
-                "    }\n" +
-                "    seajs.use('stockTenant');\n" +
-                "</script>\n" +
                 "</body>\n" +
                 "</html>";
         System.out.println("Start...");
@@ -2347,7 +2602,18 @@ public class PatternMatchTest {
         //    System.out.println(matcher2.group());
         //    //replayStr = matcher2.replaceAll("");
         //}
-        String replayStr = fileStr.replaceAll("(?<!:)\\/\\/.*|\\/\\*(\\s|.)*?\\*\\/|<(!|#)--(.|[\r\n])*?-->|(\\(.*==.*\\))", "");
+        String replayStr = "";
+        try {
+            //String patternKey = "(?<!:)\\/\\/.*|\\/\\*(\\s|.)*?\\*\\/|<(!|#)--(.|[\r\n])*?-->|(\\(.*==.*\\))";
+            //String patternKey = "(?<!:)\\/\\/.*|\\/\\*(\\s|.)*?\\*\\/|(\\(.*==.*\\))";
+            //String patternKey = "(?<!:)\\/\\/.*|\\/\\*(\\s|.)*?\\*\\/|<[!#]{1}--((.*)|(\\s))*?-->|(\\(.*==.*\\))";
+            //String patternKey = "(?<!:)\\/\\/.*|\\/\\*(\\s|.)*?\\*\\/|(<[!#]{1}--)[^(--)]*(-->)|(\\(.*==.*\\))";
+            String patternKey = "(?<!:)\\/\\/.*|\\/\\*(\\s|.)*?\\*\\/|<[!#]{1}--[\\w\\W]*?-->|(\\(.*==.*\\))";
+
+            replayStr = fileStr.replaceAll(patternKey, "");
+        } catch (Throwable th) {
+            th.printStackTrace();
+        }
         //String replayStr = fileStr.replaceAll("(\\(.*==.*\\))", "");
         //System.out.println(replayStr);
         if (replayStr.length() > 0) {
@@ -2434,5 +2700,131 @@ public class PatternMatchTest {
             String param2 = str.replaceAll("\\[", "\\\\[").replaceAll("\\]", "\\\\]").replaceAll("#", "\\\\#");
             System.out.println(param2);
         });
+    }
+
+    @Test
+    public void test13() {
+        String fileStr = "        <!--<form action=\"${ctx}/info/order/thermal_config/data/create\" method=\"post\" id=\"frmEdit\" class=\"cf\">\n" +
+                "        <input type=\"hidden\" name=\"id\" value=\"0\"/>\n" +
+                "        <fieldset class=\"dg-fieldset\">\n" +
+                "            <legend>基本配置</legend>\n" +
+                "            <div class=\"form-item\">\n" +
+                "                <div class=\"form-lab\">对接快递：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input class=\"easyui-combobox combo-w\"\n" +
+                "                           data-options=\"valueField:'id',textField:'name',\n" +
+                "                               editable:false,disabled:true,required:true,url:'${ctx}/admin/sys_express/data/thermal_all'\"\n" +
+                "                           name=\"expressId\" id=\"expressId\"/>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "            <div class=\"form-item\">\n" +
+                "                <div class=\"form-lab\">对接仓库：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input class=\"easyui-combobox combo-w\"\n" +
+                "                           data-options=\"valueField:'id',textField:'name',\n" +
+                "                                   required:true,editable :false,\n" +
+                "                                   url:'${ctx}/info/warehouse/data/all'\"\n" +
+                "                           type=\"text\" name=\"warehouseId\" id=\"warehouseId\"/>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "            <div class=\"form-item\">\n" +
+                "                <div class=\"form-lab\">对接类型：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input class=\"easyui-combobox combo-w\"\n" +
+                "                           data-options=\"valueField:'value',textField:'text',\n" +
+                "                                       required:true,editable:false,url:'${ctx}/info/order/thermal_config/data/type'\"\n" +
+                "                           type=\"text\" name=\"type\" id=\"type\"/>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "            <div class=\"form-item\" id=\"match\">\n" +
+                "                <div class=\"form-lab\">匹配店铺：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <input id=\"shopIds\" name=\"shopIds\" class=\"easyui-combobox combo-w\"\n" +
+                "                           data-options=\"valueField:'id',textField:'name',\n" +
+                "\t\t\t\t\tmultiple:true,editable :false,url:'${ctx}/info/shop/data/all'\"/>\n" +
+                "                    <input class=\"btn\" type=\"button\" onclick=\"cleanShopIds()\" value=\"重置\" style=\"vertical-align: middle\"/>\n" +
+                "                    <p class=\"form-tips\"><label style=\"color: red\">不选表示全部店铺匹配</label></p>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "        </fieldset>\n" +
+                "        </form>-->\n" +
+                "        <form id=\"frmParam\" class=\"cf\">\n" +
+                "        <fieldset class=\"dg-fieldset\">\n" +
+                "            <legend>接口设置</legend>\n" +
+                "            <div class=\"form-item\">\n" +
+                "                <div class=\"form-lab\">商家ID：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input name=\"customerId\" id=\"customerId\" type=\"text\" class=\"easyui-validatebox text\" style=\"width: 200\" data-options=\"required:true\" >\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "            <div class=\"form-item\">\n" +
+                "                <div class=\"form-lab\">商家代码：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input name=\"customerCode\" id=\"customerCode\" type=\"text\" class=\"easyui-validatebox  text\" data-options=\"required:true\"/>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "            <div class=\"form-item\">\n" +
+                "                <div class=\"form-lab\">运输方式：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input class=\"easyui-combobox combo-w\"\n" +
+                "                           data-options=\"valueField:'id',textField:'name',\n" +
+                "                               data: [{\n" +
+                "                                        name: '标准快递',\n" +
+                "                                        id: 'PACKAGE'\n" +
+                "                                    },{\n" +
+                "                                        name: '360特惠件',\n" +
+                "                                        id: 'RCP'\n" +
+                "                                    },{\n" +
+                "                                        name: '电商尊享',\n" +
+                "                                        id: 'EPEP'\n" +
+                "                                    }]\"\n" +
+                "                           name=\"transportType\" id=\"transportType\"/>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "        </fieldset>\n" +
+                "        </form>\n" +
+                "        <#--<form id=\"frmWlb\" class=\"form-lab7 cf\">\n" +
+                "            <fieldset class=\"dg-fieldset\">\n" +
+                "                <legend>接口设置</legend>\n" +
+                "                <div class=\"form-lab\">云栈淘宝店铺：</div>\n" +
+                "                <div class=\"form-field\">\n" +
+                "                    <span class=\"must\">*</span>\n" +
+                "                    <input class=\"easyui-combobox combo-w\"\n" +
+                "                           data-options=\"valueField:'id',textField:'name',\n" +
+                "                                       required:true,editable :false,url:'${ctx}/info/shop/taobao/data/list'\"\n" +
+                "                           type=\"text\" name=\"shopId\" id=\"shopId\"/>\n" +
+                "                </div>\n" +
+                "                <div class=\"form-item\">\n" +
+                "                    <div class=\"form-lab\">商品类别：</div>\n" +
+                "                    <div class=\"form-field\">\n" +
+                "                        <span class=\"must\">*</span>\n" +
+                "                        <input name=\"productName\" type=\"text\"\n" +
+                "                               class=\"easyui-validatebox  text\" data-options=\"required:true\"/>\n" +
+                "                    </div>\n" +
+                "                </div>\n" +
+                "            </fieldset>\n" +
+                "        </form>-->\n" +
+                "    </div>\n" +
+                "</body>\n" +
+                "</html>";
+
+        String replayStr = "";
+        try {
+            //String patternKey = "<[!#]{1}--(.|\\s)*?-->";
+            //String patternKey = "<#--[^(-->)]*-->";
+            //String patternKey = "<[!#]{1}--((.*)|(\\s))*?-->";
+            //String patternKey = "<[!#]{1}--[^(--)]*-->";
+            String patternKey = "<[!#]{1}--[\\w\\W]*?-->";
+            replayStr = fileStr.replaceAll(patternKey, "");
+        } catch (Throwable th) {
+            th.printStackTrace();
+        }
+        System.out.println(replayStr);
     }
 }

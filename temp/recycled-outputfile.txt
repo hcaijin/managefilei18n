@@ -1,0 +1,15 @@
+cerp.web.info.recycled.danganhuishou@@@@档案回收
+cerp.web.info.recycled.jichuguanli@@@@基础管理
+cerp.web.info.recycled.hui2shou1zhan4@@@@回收站
+cerp.web.info.recycled.danganhuishou@@@@档案回收
+cerp.web.info.recycled.sou1suo3@@@@搜索
+cerp.web.info.recycled.zhongzhitiaojian@@@@重置条件
+cerp.web.info.recycled.dianpudaima@@@@店铺代码
+cerp.web.info.recycled.cangkudaima@@@@仓库代码
+cerp.web.info.recycled.gongyingshangdaima@@@@供应商代码
+cerp.web.info.recycled.dianpumingcheng@@@@店铺名称
+cerp.web.info.recycled.cangkumingcheng@@@@仓库名称
+cerp.web.info.recycled.gongyingshangmingcheng@@@@供应商名称
+cerp.web.info.recycled.dianpuleixing@@@@店铺类型
+cerp.web.info.recycled.cangkuleixing@@@@仓库类型
+cerp.web.info.recycled.gongyingshangleixing@@@@供应商类型

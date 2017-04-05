@@ -48,15 +48,20 @@ public class MatchCounter implements Callable<ArrayList<String>> {
                 Pattern pattern = Pattern.compile("[\\d-]");
                 Matcher match = pattern.matcher(file.getName());
                 if (!match.find()) {
+                    // TODO: 3/24/17 不查找所有文件 
                     if (file.isDirectory()) {//查找所有文件，加入数组
                         info.setDirectoryFile(file);
                         MatchCounter counter = new MatchCounter(pool, info);
                         Future<ArrayList<String>> resultFuture = pool.submit(counter);
                         results.add(resultFuture);
                     } else {//查找文件内容
+                    // TODO: 3/24/17 是文件才执行
+                    //if (file.isFile()) {
                         //System.out.println(file.getName());
                         String fileStr = ToolUtil.readToString(file);
-                        String replayStr = fileStr.replaceAll("(?<!:)\\/\\/.*|\\/\\*(\\s|.)*?\\*\\/|<(!|#)--(.|[\r\n])*?-->|(\\(.*==.*\\))", "");
+                        //String patternKey = "(?<!:)\\/\\/.*|\\/\\*(\\s|.)*?\\*\\/|<(!|#)--(.|[\r\n])*?-->|(\\(.*==.*\\))";
+                        String patternKey = "(?<!:)\\/\\/.*|\\/\\*(\\s|.)*?\\*\\/|<[!#]{1}--[\\w\\W]*?-->|(\\(.*==.*\\))";
+                        String replayStr = fileStr.replaceAll(patternKey, "");
                         //System.out.println(replayStr);
                         if (replayStr.length() > 0) {
                             temp = searchs(file, replayStr);
@@ -72,7 +77,7 @@ public class MatchCounter implements Callable<ArrayList<String>> {
                         //if (replayStr.length() > 0) {
                         //    temp = search(file, replayStr);
                         //}
-                        if (temp != null) {
+                        if (temp != null && temp.size() > 0) {
                             dataArrayList.addAll(temp);
                         }
                     }
@@ -90,6 +95,9 @@ public class MatchCounter implements Callable<ArrayList<String>> {
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
+        } catch (Throwable th) {
+            th.printStackTrace();
+            th.getCause();
         }
         return dataArrayList;
     }

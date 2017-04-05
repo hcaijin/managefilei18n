@@ -1,0 +1,35 @@
+# =================================item========================================
+cerp.web.info.item.dai4ma3@#@代码
+cerp.web.info.item.shangpindangan@#@商品档案
+cerp.web.info.item.ming2cheng1@#@名称
+cerp.web.info.item.bei4zhu4@#@备注
+cerp.web.info.item.shangpinshuxing@#@商品属性
+cerp.web.info.item.jichuxinxi@#@基础信息
+cerp.web.info.item.xiu1gai3@#@修改
+cerp.web.info.item.shan1chu2@#@删除
+cerp.web.info.item.xin1zeng1@#@新增
+cerp.web.info.item.bao3cun2@#@保存
+cerp.web.info.item.shangpindanwei@#@商品单位
+cerp.web.info.item.que4ren4@#@确认
+cerp.web.info.item.qu3xiao1@#@取消
+cerp.web.info.item.shangpinpeizhi@#@商品配置
+cerp.web.info.item.shangpinkucunzhuangtaixin@#@商品库存状态信息
+cerp.web.info.item.tianjiashuxing@#@添加属性
+cerp.web.info.item.shifouqiyong@#@是否启用
+cerp.web.info.item.shangpinpeizhiv@#@商品配置：
+cerp.web.info.item.yidongjiaquanpingjun@#@移动加权平均
+cerp.web.info.item.qingxianbaocunxiugaideshu@#@请先保存修改的数据
+cerp.web.info.item.chengbenjiajisuancelvev@#@成本价计算策略：
+cerp.web.info.item.xinzengvvvbianji@#@新增 / 编辑
+cerp.web.info.item.kongzhimianban@#@控制面板
+cerp.web.info.item.xinzengshuxingzhi@#@新增属性值
+cerp.web.info.item.cao1zuo4@#@操作
+cerp.web.info.item.shangpinxiangguan@#@商品相关
+cerp.web.info.item.shifoushanchu@#@是否删除
+cerp.web.info.item.xzvnbspvvvnbspvxg@#@新增&nbsp;/&nbsp;修改
+cerp.web.info.item.shanchushuxingzhi@#@删除属性值
+cerp.web.info.item.shifoubaocun@#@是否保存
+cerp.web.info.item.gudingchengbenjia@#@固定成本价
+cerp.web.info.item.lei4xing2@#@类型
+# ======================It is a dignity in the dividing line====================
+

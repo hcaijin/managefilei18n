@@ -1,0 +1,11 @@
+# =================================department========================================
+cerp.web.info.department.yonghuguanli@#@用户管理
+cerp.web.info.department.shan1chu2@#@删除
+cerp.web.info.department.bumenmingcheng@#@部门名称
+cerp.web.info.department.bumendaima@#@部门代码
+cerp.web.info.department.xiu1gai3@#@修改
+cerp.web.info.department.jichuxinxi@#@基础信息
+cerp.web.info.department.bumenxinxi@#@部门信息
+cerp.web.info.department.xin1zeng1@#@新增
+# ======================It is a dignity in the dividing line====================
+

@@ -94,7 +94,7 @@ public class ReplayManage {
             if (valueKey != null && valueKey.length() > 0) {
                 String[] arrayStr = valueKey.split("@@@@");
                 if (arrayStr.length == 2) {
-                    if (value > 5) {
+                    if (value > 1) {
                         valueKey = valueKey.replaceAll("\\.web\\.", ".common.");
                     }
                     valueKey = valueKey.replace("@@@@", "@#@");
@@ -129,7 +129,7 @@ public class ReplayManage {
                 stringList.add(keyValue + "@#@" + key);
             } else {
                 String[] arrKey = keyValue.split("\\.");
-                stringList.add(keyValue.replaceAll("\\." + arrKey[3] + "\\.", ".").replaceAll("\\.web\\.", ".common.") + "@#@" + key);
+                stringList.add(keyValue.replaceAll("\\." + arrKey[3] + "\\.", ".").replaceAll("\\." + arrKey[1] + "\\.", ".ifcommon.") + "@#@" + key);
             }
         });
         System.out.println(stringList.size());
@@ -162,7 +162,7 @@ public class ReplayManage {
 
         list.forEach(temp -> {
             try {
-                if (temp.indexOf("cerp.common.") != -1) {
+                if (temp.indexOf("cerp.ifcommon.") != -1) {
                     onefos.write(temp.getBytes());
                     onefos.write(FILENF.getBytes());
                 } else {
