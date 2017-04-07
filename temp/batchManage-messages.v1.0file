@@ -1,0 +1,21 @@
+# =================================batchManage========================================
+cerp.common.info.batchManage.piciguanli@#@批次管理
+cerp.web.info.batchManage.shengchanriqi@#@生产日期
+cerp.web.info.batchManage.chukucelve@#@出库策略
+cerp.web.info.batchManage.rukuriqi@#@入库日期
+cerp.web.info.batchManage.picipeizhi@#@批次配置
+cerp.web.info.batchManage.zdscrkrqvdqrqv@#@自动生成入库日期(当前日期)
+cerp.web.info.batchManage.zdscyxrqvscrqvbzqv@#@自动生成有效日期(生产日期+保质期)
+cerp.web.info.batchManage.shifoukaiqipiciguanliv@#@是否开启批次管理：
+cerp.web.info.batchManage.kongzhimianban@#@控制面板
+cerp.web.info.batchManage.guoqipiciyunxuchuku@#@过期批次允许出库
+cerp.web.info.batchManage.bao3cun2@#@保存
+cerp.web.info.batchManage.zdscpcxxvbgxwsgsrv@#@自动生成批次信息(不勾选为手工输入)
+cerp.web.info.batchManage.danpicichuku@#@单批次出库
+cerp.web.info.batchManage.youxiaoriqi@#@有效日期
+cerp.web.info.batchManage.picichukucelve@#@批次出库策略
+cerp.web.info.batchManage.picihaovmorenv@#@批次号(默认)
+cerp.web.info.batchManage.zdscscrqvdqrqv@#@自动生成生产日期(当前日期)
+cerp.web.info.batchManage.zdscpchvdqsjv@#@自动生成批次号(当前时间)
+# ======================It is a dignity in the dividing line====================
+

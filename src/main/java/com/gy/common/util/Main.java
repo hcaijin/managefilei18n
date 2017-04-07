@@ -1,5 +1,6 @@
 package com.gy.common.util;
 
+import com.gy.common.util.entity.MatchCounterInfo;
 import com.gy.common.util.impl.MatchCounter;
 import com.gy.common.util.impl.ReplayManage;
 
@@ -27,17 +28,56 @@ public class Main {
             //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/tc/vipjit/";
             // TODO: 3/17/17 17号16:00已经执行过这个目录了，不要在执行，注释掉
             //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/tc/unpayed/";
-            // TODO: 3/17/17 17号17:00 准备开始：
+            // TODO: 3/20/17 20号11:00 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/vip/vip/";
+            // TODO: 3/20/17 14:00 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/template/";
+            // TODO: 3/20/17 15:00 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/template/";
+            // TODO: 3/20/17 15:20 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/task/";
+            // TODO: 3/20/17 15:45 暂时不执行了,别的同事手动改了
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/stock/";
+            // TODO: 3/23/17 11:35 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/ic/";
+            // TODO: 3/23/17 13:35 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/finance/trade/";
+            // TODO: 3/23/17 14:25 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/finance/purchase/";
+            // TODO: 3/23/17 15:22 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/admin/finance/";
+            // TODO: 3/23/17 15:22 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/admin/order/";
+            // TODO: 3/23/17 15:22 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/admin/";
+            // TODO: 3/23/17 16:24 已经执行过这个目录了，不要在执行，注释掉
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/index/";
+            // TODO: 3/24/17 14:00 准备执行
             String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/info/";
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/info/express/";
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/info/email/";
+            //String directory = "/home/hcj/Work/data/ecerp-saas/Sources/ecerp/ecerp-web/src/main/webapp/WEB-INF/views/info/platform/";
 
+            //String version = "";
+            String version = "-v2.0";
+            //String version = "-finance-v1.0";
+            //String version = "-admin-v1.0";
+
+            //String keywordString = "^[^//*]*[\\u4e00-\\u9fa5]+";
             //input file dir
             File dirFile = new File(directory);
             //output file
-            String file = System.getProperty("user.dir") + "/temp/" + dirFile.getName() + "-outputfile.txt";
+            String file = System.getProperty("user.dir") + "/temp/" + dirFile.getName() + "-outputfile" + version + ".txt";
 
-            String keywordString = "^[^//*]*[\\u4e00-\\u9fa5]+";
+            MatchCounterInfo matchCounterInfo = new MatchCounterInfo();
+            matchCounterInfo.setDirectoryFile(dirFile);
+            // cerp.[程序].[模块].[功能].[key]
+            //matchCounterInfo.setProgramName("web");
+            //matchCounterInfo.setModuleName("index");
+            //matchCounterInfo.setFeatures("manage");
+
             ExecutorService pool = Executors.newCachedThreadPool();//线程池
-            MatchCounter dataArrayList = new MatchCounter(dirFile, keywordString, pool);
+            MatchCounter dataArrayList = new MatchCounter(pool, matchCounterInfo);
             Future<ArrayList<String>> resultFuture = pool.submit(dataArrayList);//获取结果
 
             //输出结果
@@ -61,8 +101,15 @@ public class Main {
                 iex.printStackTrace();
             }
             // ReplaySpringMessage Main:
-            String outFile = System.getProperty("user.dir") + "/temp/" + dirFile.getName() + "-messages.properties";
-            ReplayManage replayManage = new ReplayManage(file, outFile);
+            //String outFile = System.getProperty("user.dir") + "/temp/" + dirFile.getName() + "-flag-messages" + version + ".txt";
+            //String oneOutFile = System.getProperty("user.dir") + "/temp/" + dirFile.getName() + "-messages" + version + ".properties";
+            String outFile = System.getProperty("user.dir") + "/temp/" + dirFile.getName() + "-messages" + version + ".txt";
+            String oneOutFile = System.getProperty("user.dir") + "/temp/" + dirFile.getName() + "-common-messages" + version + ".txt";
+
+            Boolean isDir = matchCounterInfo.getProgramName() != null ? true : false;
+            //Boolean isDir = true;
+
+            ReplayManage replayManage = new ReplayManage(file, outFile, oneOutFile, isDir);
             replayManage.doReplay(dirFile.getName());
 
             System.exit(0);

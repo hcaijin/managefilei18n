@@ -4,6 +4,7 @@ package com.gy.common.util.impl;
 import com.gy.common.util.tool.ToolUtil;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,10 +22,20 @@ public class ReplayManage {
      * 输出文件
      */
     private File outFile;
+    /**
+     * 没有重复的行的文件
+     */
+    private File oneOutFile;
+    /**
+     * 是否自定义目录级别
+     */
+    private Boolean isDir = false;
 
-    public ReplayManage(String files, String outFileStr) {
+    public ReplayManage(String files, String outFileStr, String oneOutFileStr, Boolean isDir) {
         this.file = new File(files);
         this.outFile = new File(outFileStr);
+        this.oneOutFile = new File(oneOutFileStr);
+        this.isDir = isDir;
     }
 
     public void doReplay(String name) throws InterruptedIOException {
@@ -38,9 +49,16 @@ public class ReplayManage {
                     dealLine(strings, maps);
                 }
                 reader.close();
-                List<Map.Entry<String, Integer>> lists = ToolUtil.sortResult(maps);
-                int totalNum = saveToFile(name, lists);
+                int totalNum;
+                if (isDir) {
+                    List<Map.Entry<String, Integer>> lists = ToolUtil.sortResult(maps);
+                    totalNum = saveToFiles(name, lists);
+                } else {
+                    List<String> olists = getMapList(maps);
+                    totalNum = saveToFile(name, olists);
+                }
                 System.out.println("total line:" + totalNum);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,6 +72,7 @@ public class ReplayManage {
      * @param str
      * @param map
      */
+
     private void dealLine(String str, Map map) {
         if (str != null && str.length() > 0) {
             Integer num = (Integer) map.get(str);
@@ -64,29 +83,24 @@ public class ReplayManage {
         }
     }
 
-    /**
-     * 保存为properties
-     *
-     * @param list
-     * @throws IOException
-     */
-    private int saveToFile(String name, List<Map.Entry<String, Integer>> list) throws IOException {
+    private int saveToFiles(String name, List<Map.Entry<String, Integer>> list) throws IOException {
         FileOutputStream fos = new FileOutputStream(outFile, true);
         String startLine = "# =================================" + name + "========================================";
         fos.write(startLine.getBytes());
         fos.write(FILENF.getBytes());
         for (Map.Entry<String, Integer> entry : list) {
-            System.out.println(entry.getValue() + ":" + entry.getKey());
             String valueKey = entry.getKey();
             Integer value = entry.getValue();
             if (valueKey != null && valueKey.length() > 0) {
-                String[] arrayStr = valueKey.split("=");
+                String[] arrayStr = valueKey.split("@@@@");
                 if (arrayStr.length == 2) {
-                    String line = valueKey;
-                    if (value > 5) {
-                        line = valueKey.replaceAll("\\.web\\.", ".common.");
+                    if (value > 1) {
+                        valueKey = valueKey.replaceAll("\\.web\\.", ".common.");
                     }
-                    fos.write(line.getBytes());
+                    valueKey = valueKey.replace("@@@@", "@#@");
+                    System.out.println(value + ":" + valueKey);
+
+                    fos.write(valueKey.getBytes());
                     fos.write(FILENF.getBytes());
                 }
             }
@@ -98,4 +112,77 @@ public class ReplayManage {
         return list.size();
     }
 
+    private List<String> getMapList(Map<String, Integer> map) {
+        Map<String, Integer> maps = new HashMap<>();
+        Map<String, String> mapss = new HashMap<>();
+        map.forEach((key, value) -> {
+            String[] arrarStr = key.split("@@@@");
+            if (arrarStr.length == 2) {
+                dealLine(arrarStr[1], arrarStr[0], maps, mapss);
+            }
+        });
+        List<String> stringList = new ArrayList<>();
+        maps.forEach((key, value) -> {
+            System.out.println(key + ":" + value);
+            String keyValue = mapss.get(key);
+            if (value == 1) {
+                stringList.add(keyValue + "@#@" + key);
+            } else {
+                String[] arrKey = keyValue.split("\\.");
+                stringList.add(keyValue.replaceAll("\\." + arrKey[3] + "\\.", ".").replaceAll("\\." + arrKey[1] + "\\.", ".ifcommon.") + "@#@" + key);
+            }
+        });
+        System.out.println(stringList.size());
+        return stringList;
+    }
+
+    private void dealLine(String str, String value, Map map, Map maps) {
+        if (str != null && str.length() > 0) {
+            Integer num = (Integer) map.get(str);
+            if (num == null) {
+                num = 0;
+                maps.put(str, value);
+            }
+            map.put(str, num + 1);
+        }
+    }
+
+    private int saveToFile(String name, List<String> list) throws IOException {
+        FileOutputStream onefos = new FileOutputStream(oneOutFile, true);
+        FileOutputStream fos = new FileOutputStream(outFile, true);
+
+        String onestartLine = "# =============================" + name + " common line===============================";
+        String startLine = "# =================================" + name + "========================================";
+
+        onefos.write(onestartLine.getBytes());
+        onefos.write(FILENF.getBytes());
+
+        fos.write(startLine.getBytes());
+        fos.write(FILENF.getBytes());
+
+        list.forEach(temp -> {
+            try {
+                if (temp.indexOf("cerp.ifcommon.") != -1) {
+                    onefos.write(temp.getBytes());
+                    onefos.write(FILENF.getBytes());
+                } else {
+                    fos.write(temp.getBytes());
+                    fos.write(FILENF.getBytes());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        onefos.write("# ==================It is a dignity in the dividing line have common==============".getBytes());
+        onefos.write(FILENF.getBytes());
+        onefos.write(FILENF.getBytes());
+        onefos.close();
+
+        fos.write("# ======================It is a dignity in the dividing line====================".getBytes());
+        fos.write(FILENF.getBytes());
+        fos.write(FILENF.getBytes());
+        fos.close();
+        return list.size();
+    }
 }
